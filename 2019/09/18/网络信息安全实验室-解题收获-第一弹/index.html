@@ -87,12 +87,12 @@
 <meta property="og:site_name" content="Mortal">
 <meta property="og:description" content="一些简单的加密算法，以及fiddler抓包工具的基本使用">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/.com//image.jpg">
-<meta property="og:updated_time" content="2019-09-18T12:36:29.895Z">
+<meta property="og:image" content="http://yoursite.com/.com//09/18/网络信息安全实验室-解题收获-第一弹/image.jpg">
+<meta property="og:updated_time" content="2019-09-18T12:48:25.577Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络信息安全实验室 解题收获 第一弹">
 <meta name="twitter:description" content="一些简单的加密算法，以及fiddler抓包工具的基本使用">
-<meta name="twitter:image" content="http://yoursite.com/.com//image.jpg">
+<meta name="twitter:image" content="http://yoursite.com/.com//09/18/网络信息安全实验室-解题收获-第一弹/image.jpg">
 
 
 
@@ -324,7 +324,9 @@
 <blockquote>
 <p><a href="https://blog.csdn.net/wufaliang003/article/details/79794982" target="_blank" rel="noopener">https://blog.csdn.net/wufaliang003/article/details/79794982</a></p>
 </blockquote>
-<h1 id="抓包工具fiddler简介"><a href="#抓包工具fiddler简介" class="headerlink" title="抓包工具fiddler简介"></a>抓包工具fiddler简介</h1><p>该工具默认情况下只能抓HTTP协议的数据包，当抓HTTPS协议的数据包的情况下，需要在工具-选项-https中选择解密https协议，并且信任证书才行。工具-选项中也有监听选项卡，给该选项卡指定对应端口号后，可以抓取以本机作为代理的其他通讯设备的数据包。本机的本地ip可以在软件右上角的小电脑处显示。根据本人抓取安卓设备数据包的经验，需要给安卓手机也安装对应的证书。不过安卓7版本以上需要对证书进行一定的处理，这里不再赘述。<br>点击软件左侧数据包列表顶部的选项卡，可以根据选项卡的内容对数据包排序。数据包列表下侧则可以开启数据包拦截，禁止捕获数据包等选项卡。<br>fiddler的奇技淫巧很多，比如用这个软件抓取没有下载选项的视频等，这里不再赘述。<br>下面列出我们抓包时需要留意的数据包类型<br><img src="/.com//image.jpg" alt></p>
+<h1 id="抓包工具fiddler简介"><a href="#抓包工具fiddler简介" class="headerlink" title="抓包工具fiddler简介"></a>抓包工具fiddler简介</h1><p>该工具默认情况下只能抓HTTP协议的数据包，当抓HTTPS协议的数据包的情况下，需要在工具-选项-https中选择解密https协议，并且信任证书才行。工具-选项中也有监听选项卡，给该选项卡指定对应端口号后，可以抓取以本机作为代理的其他通讯设备的数据包。本机的本地ip可以在软件右上角的小电脑处显示。根据本人抓取安卓设备数据包的经验，需要给安卓手机也安装对应的证书。不过安卓7版本以上需要对证书进行一定的处理，这里不再赘述。<br>点击软件左侧数据包列表顶部的选项卡，可以根据选项卡的内容对数据包排序。数据包列表下侧则可以开启数据包拦截，禁止捕获数据包等选项卡。<br>fiddler的奇技淫巧很多，比如用这个软件抓取没有下载选项的视频等，这里不再赘述。<br>下面列出我们抓包时需要留意的数据包类型  </p>
+<img src="/.com//09/18/网络信息安全实验室-解题收获-第一弹/image.jpg" title="重要数据包">
+
 <h1 id="后台扫描工具"><a href="#后台扫描工具" class="headerlink" title="后台扫描工具"></a>后台扫描工具</h1><p>有一些工具可以通过暴力查表，获得一些网站的后台，比如在url后面加上robots.txt等。诸如此类的工具有御剑，明小子，等等。</p>
 <h1 id="修改HTML表单内容"><a href="#修改HTML表单内容" class="headerlink" title="修改HTML表单内容"></a>修改HTML表单内容</h1><p>今天区块链课的时候老师也讲了，其实HTML表单有一点像键值对，下面给出非常简单的表单代码：  </p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Type"</span> <span class="attr">content</span>=<span class="string">"text/html;charset=utf-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">""</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">maxlength</span>=<span class="string">"3"</span> <span class="attr">name</span>=<span class="string">"v"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"提交"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -462,7 +464,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
