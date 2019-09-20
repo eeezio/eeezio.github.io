@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="2.快速口算小明要参加一个高技能比赛，要求每个人都要能够快速口算四则运算，2秒钟之内就能够得到结果，但是小明就是一个小学生没有经过特殊的培训，那小明能否通过快速口算测验呢？http://lab1.xseclab.com/xss2_0d557e6d2a4ac08b749b61473a075be1/index.php这题直接写个脚本即可，需要注意的是eval函数可以计算字符串表达式的值，同时最好了解一">
+<meta name="description" content="CTF基础刷题脚本篇">
 <meta name="keywords" content="信息安全">
 <meta property="og:type" content="article">
 <meta property="og:title" content="网络安全实验室 脚本关 wp">
 <meta property="og:url" content="http://yoursite.com/2019/09/19/网络安全实验室-脚本关-wp/index.html">
 <meta property="og:site_name" content="Mortal">
-<meta property="og:description" content="2.快速口算小明要参加一个高技能比赛，要求每个人都要能够快速口算四则运算，2秒钟之内就能够得到结果，但是小明就是一个小学生没有经过特殊的培训，那小明能否通过快速口算测验呢？http://lab1.xseclab.com/xss2_0d557e6d2a4ac08b749b61473a075be1/index.php这题直接写个脚本即可，需要注意的是eval函数可以计算字符串表达式的值，同时最好了解一">
+<meta property="og:description" content="CTF基础刷题脚本篇">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-19T13:23:33.325Z">
+<meta property="og:updated_time" content="2019-09-20T16:18:37.129Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络安全实验室 脚本关 wp">
-<meta name="twitter:description" content="2.快速口算小明要参加一个高技能比赛，要求每个人都要能够快速口算四则运算，2秒钟之内就能够得到结果，但是小明就是一个小学生没有经过特殊的培训，那小明能否通过快速口算测验呢？http://lab1.xseclab.com/xss2_0d557e6d2a4ac08b749b61473a075be1/index.php这题直接写个脚本即可，需要注意的是eval函数可以计算字符串表达式的值，同时最好了解一">
+<meta name="twitter:description" content="CTF基础刷题脚本篇">
 
 
 
@@ -286,6 +286,10 @@
           
 
           
+              <div class="post-description">
+                  CTF基础刷题脚本篇
+              </div>
+          
 
         </div>
       </header>
@@ -302,6 +306,14 @@
       
         <h1 id="2-快速口算"><a href="#2-快速口算" class="headerlink" title="2.快速口算"></a>2.快速口算</h1><p>小明要参加一个高技能比赛，要求每个人都要能够快速口算四则运算，2秒钟之内就能够得到结果，但是小明就是一个小学生没有经过特殊的培训，那小明能否通过快速口算测验呢？<br><a href="http://lab1.xseclab.com/xss2_0d557e6d2a4ac08b749b61473a075be1/index.php" target="_blank" rel="noopener">http://lab1.xseclab.com/xss2_0d557e6d2a4ac08b749b61473a075be1/index.php</a><br>这题直接写个脚本即可，需要注意的是eval函数可以计算字符串表达式的值，同时最好<strong>了解一下requests库中的post功能与用法</strong>。<br>脚本如下</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">url=<span class="string">'http://lab1.xseclab.com/xss2_0d557e6d2a4ac08b749b61473a075be1/index.php'</span></span><br><span class="line">s=requests.session()</span><br><span class="line">r=s.get(url)</span><br><span class="line">express=str(re.findall(<span class="string">'(.*?)=&lt;input'</span>,r.text))</span><br><span class="line">real_express=[]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(express)):</span><br><span class="line">    <span class="keyword">if</span> express[i]!=<span class="string">' '</span>:</span><br><span class="line">        real_express.append(express [i])</span><br><span class="line">real_express=real_express[<span class="number">2</span>:len(real_express)<span class="number">-2</span>]</span><br><span class="line">real_express=<span class="string">''</span>.join(real_express)</span><br><span class="line">ans=eval(real_express)</span><br><span class="line">data=&#123;<span class="string">'v'</span>:ans&#125;</span><br><span class="line">a=s.post(url,data=data).content.decode(<span class="string">'utf-8'</span>)</span><br><span class="line">print(a)</span><br></pre></td></tr></table></figure>
+
+<h1 id="4-怎么就是不弹出key呢？"><a href="#4-怎么就是不弹出key呢？" class="headerlink" title="4.怎么就是不弹出key呢？"></a>4.怎么就是不弹出key呢？</h1><blockquote>
+<p><a href="http://lab1.xseclab.com/xss3_5dcdde90bbe55087eb3514405972b1a6/index.php" target="_blank" rel="noopener">http://lab1.xseclab.com/xss3_5dcdde90bbe55087eb3514405972b1a6/index.php</a><br>二话不说，直接看html代码</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"content-type"</span> <span class="attr">content</span>=<span class="string">"text/html;charset=utf-8"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            function alert(a) &#123;</span><br><span class="line">                  return false;</span><br><span class="line">            &#125;</span><br><span class="line">            document.write = function () &#123;</span><br><span class="line">                  return false;</span><br><span class="line">            &#125;</span><br><span class="line">            function prompt(a) &#123;</span><br><span class="line">                  return false;</span><br><span class="line">            &#125;</span><br><span class="line">            var a = function () &#123;</span><br><span class="line"><span class="xml">                  var b = function (p, a, c, k, e, r) &#123; e = function (c) &#123; return (c <span class="tag">&lt; <span class="attr">a</span> ? '' <span class="attr">:</span> <span class="attr">e</span>(<span class="attr">parseInt</span>(<span class="attr">c</span> / <span class="attr">a</span>))) + ((<span class="attr">c</span> = <span class="string">c</span> % <span class="attr">a</span>) &gt;</span> 35 ? String.fromCharCode(c + 29) : c.toString(36)) &#125;; if (!''.replace(/^/, String)) &#123; while (c--) r[e(c)] = k[c] || e(c); k = [function (e) &#123; return r[e] &#125;]; e = function () &#123; return '\\w+' &#125;; c = 1 &#125;; while (c--) if (k[c]) p = p.replace(new RegExp('\\b' + e(c) + '\\b', 'g'), k[c]); return p &#125;('1s(1e(p,a,c,k,e,r)&#123;e=1e(c)&#123;1d(c<span class="tag">&lt;<span class="name">a?\'\':e(1p(c</span>/<span class="attr">a</span>)))+((<span class="attr">c</span>=<span class="string">c%a)</span>&gt;</span>1q?1f.1j(c+1k):c.1n(1o))&#125;;1g(!\'\'.1h(/^/,1f))&#123;1i(c--)r[e(c)]=k[c]||e(c);k=[1e(e)&#123;1d r[e]&#125;];e=1e()&#123;1d\'\\\\w+\'&#125;;c=1&#125;;1i(c--)1g(k[c])p=p.1h(1l 1m(\'\\\\b\'+e(c)+\'\\\\b\',\'g\'),k[c]);1d p&#125;(\'Y(R(p,a,c,k,e,r)&#123;e=R(c)&#123;S(c<span class="tag">&lt;<span class="name">a?\\\'\\\':e(18(c</span>/<span class="attr">a</span>)))+((<span class="attr">c</span>=<span class="string">c%a)</span>&gt;</span>17?T.16(c+15):c.12(13))&#125;;U(!\\\'\\\'.V(/^/,T))&#123;W(c--)r[e(c)]=k[c]||e(c);k=[R(e)&#123;S r[e]&#125;];e=R()&#123;S\\\'\\\\\\\\w+\\\'&#125;;c=1&#125;;W(c--)U(k[c])p=p.V(Z 11(\\\'\\\\\\\\b\\\'+e(c)+\\\'\\\\\\\\b\\\',\\\'g\\\'),k[c]);S p&#125;(\\\'G(B(p,a,c,k,e,r)&#123;e=B(c)&#123;A c.L(a)&#125;;E(!\\\\\\\'\\\\\\\'.C(/^/,F))&#123;D(c--)r[e(c)]=k[c]||e(c);k=[B(e)&#123;A r[e]&#125;];e=B()&#123;A\\\\\\\'\\\\\\\\\\\\\\\\w+\\\\\\\'&#125;;c=1&#125;;D(c--)E(k[c])p=p.C(I J(\\\\\\\'\\\\\\\\\\\\\\\\b\\\\\\\'+e(c)+\\\\\\\'\\\\\\\\\\\\\\\\b\\\\\\\',\\\\\\\'g\\\\\\\'),k[c]);A p&#125;(\\\\\\\'t(h(p,a,c,k,e,r)&#123;e=o;n(!\\\\\\\\\\\\\\\'\\\\\\\\\\\\\\\'.m(/^/,o))&#123;l(c--)r[c]=k[c]||c;k=[h(e)&#123;f r[e]&#125;];e=h()&#123;f\\\\\\\\\\\\\\\'\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\w+\\\\\\\\\\\\\\\'&#125;;c=1&#125;;l(c--)n(k[c])p=p.m(q s(\\\\\\\\\\\\\\\'\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\b\\\\\\\\\\\\\\\'+e(c)+\\\\\\\\\\\\\\\'\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\b\\\\\\\\\\\\\\\',\\\\\\\\\\\\\\\'g\\\\\\\\\\\\\\\'),k[c]);f p&#125;(\\\\\\\\\\\\\\\'1 3="6";1 4="7";1 5="";8(1 2=0;2<span class="tag">&lt;<span class="name">9;2++)&#123;5+=3+4&#125;\\\\\\\\\\\\\\\',j,j,\\\\\\\\\\\\\\\'|u|i|b|c|d|v|x|y|j\\\\\\\\\\\\\\\'.z(\\\\\\\\\\\\\\\'|\\\\\\\\\\\\\\\'),0,&#123;&#125;))\\\\\\\',H,H,\\\\\\\'|||||||||||||||A||B||M||D|C|E|F||I||J|G|N|O||P|Q|K\\\\\\\'.K(\\\\\\\'|\\\\\\\'),0,&#123;&#125;))\\\',X,X,\\\'||||||||||||||||||||||||||||||||||||S|R|V|W|U|T|Y|13|Z|11|14|12|10|19|1a|1b|1c\\\'.14(\\\'|\\\'),0,&#123;&#125;))\',1t,1u,\'|||||||||||||||||||||||||||||||||||||||||||||||||||||1e|1d|1f|1g|1h|1i|1v|1s|1l||1m|1n|1o|1r|1k|1j|1q|1p|1w|1x|1y|1z\'.1r(\'|\'),0,&#123;&#125;))',</span> <span class="attr">62</span>, <span class="attr">98</span>, '|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||<span class="attr">return</span>|<span class="attr">function</span>|<span class="attr">String</span>|<span class="attr">if</span>|<span class="attr">replace</span>|<span class="attr">while</span>|<span class="attr">fromCharCode</span>|<span class="attr">29</span>|<span class="attr">new</span>|<span class="attr">RegExp</span>|<span class="attr">toString</span>|<span class="attr">36</span>|<span class="attr">parseInt</span>|<span class="attr">35</span>|<span class="attr">split</span>|<span class="attr">eval</span>|<span class="attr">62</span>|<span class="attr">75</span>|<span class="attr">53</span>|<span class="attr">var</span>|<span class="attr">slakfj</span>|<span class="attr">teslkjsdflk</span>|<span class="attr">for</span>'<span class="attr">.split</span>('|'), <span class="attr">0</span>, &#123;&#125;);</span></span></span><br><span class="line">                  var d = eval(b);</span><br><span class="line">                  alert("key is first 14 chars" + d);</span><br><span class="line">            &#125;</span><br><span class="line">      <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:a();"</span>&gt;</span>_点击之后怎么没反应呢？说好的弹窗呢？__<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看见，html调用了js脚本中的a()方法，但是通过上面的函数干扰后，最后return了false。所以我们要把上面干扰的函数删掉，将剩余的代码保存成html后在浏览器中运行即可获得key。</p>
+
       
     </div>
     
@@ -340,6 +352,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/20/数据挖掘竞赛技巧之模型融合中的stacking/" rel="prev" title="数据挖掘竞赛技巧之模型融合中的stacking方法">
+                数据挖掘竞赛技巧之模型融合中的stacking方法 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -429,7 +445,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
@@ -462,7 +478,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2-快速口算"><span class="nav-number">1.</span> <span class="nav-text">2.快速口算</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2-快速口算"><span class="nav-number">1.</span> <span class="nav-text">2.快速口算</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-怎么就是不弹出key呢？"><span class="nav-number">2.</span> <span class="nav-text">4.怎么就是不弹出key呢？</span></a></li></ol></div>
             
 
           </div>

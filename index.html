@@ -233,6 +233,130 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/20/数据挖掘竞赛技巧之模型融合中的stacking/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mortal">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mortal">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/20/数据挖掘竞赛技巧之模型融合中的stacking/" itemprop="url">数据挖掘竞赛技巧之模型融合中的stacking方法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-20T19:47:57+08:00">
+                2019-09-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          大数据竞赛中的重要上分方法
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/09/20/数据挖掘竞赛技巧之模型融合中的stacking/">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/19/网络安全实验室-脚本关-wp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -303,10 +427,14 @@
 
       
         
-          
-            <h1 id="2-快速口算"><a href="#2-快速口算" class="headerlink" title="2.快速口算"></a>2.快速口算</h1><p>小明要参加一个高技能比赛，要求每个人都要能够快速口算四则运算，2秒钟之内就能够得到结果，但是小明就是一个小学生没有经过特殊的培训，那小明能否通过快速口算测验呢？<br><a href="http://lab1.xseclab.com/xss2_0d557e6d2a4ac08b749b61473a075be1/index.php" target="_blank" rel="noopener">http://lab1.xseclab.com/xss2_0d557e6d2a4ac08b749b61473a075be1/index.php</a><br>这题直接写个脚本即可，需要注意的是eval函数可以计算字符串表达式的值，同时最好<strong>了解一下requests库中的post功能与用法</strong>。<br>脚本如下</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">url=<span class="string">'http://lab1.xseclab.com/xss2_0d557e6d2a4ac08b749b61473a075be1/index.php'</span></span><br><span class="line">s=requests.session()</span><br><span class="line">r=s.get(url)</span><br><span class="line">express=str(re.findall(<span class="string">'(.*?)=&lt;input'</span>,r.text))</span><br><span class="line">real_express=[]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(express)):</span><br><span class="line">    <span class="keyword">if</span> express[i]!=<span class="string">' '</span>:</span><br><span class="line">        real_express.append(express [i])</span><br><span class="line">real_express=real_express[<span class="number">2</span>:len(real_express)<span class="number">-2</span>]</span><br><span class="line">real_express=<span class="string">''</span>.join(real_express)</span><br><span class="line">ans=eval(real_express)</span><br><span class="line">data=&#123;<span class="string">'v'</span>:ans&#125;</span><br><span class="line">a=s.post(url,data=data).content.decode(<span class="string">'utf-8'</span>)</span><br><span class="line">print(a)</span><br></pre></td></tr></table></figure>
-          
+          CTF基础刷题脚本篇
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/09/19/网络安全实验室-脚本关-wp/">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -836,160 +964,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/12/test/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mortal">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mortal">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/09/12/test/" itemprop="url">区块链技术复习笔记(1) 比特币八卦，传统货币与电子货币</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-12T15:52:14+08:00">
-                2019-09-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="比特币八卦，传统货币与电子货币"><a href="#比特币八卦，传统货币与电子货币" class="headerlink" title="比特币八卦，传统货币与电子货币"></a>比特币八卦，传统货币与电子货币</h1><h2 id="1-区块链具有货币属性"><a href="#1-区块链具有货币属性" class="headerlink" title="1.区块链具有货币属性"></a>1.区块链具有货币属性</h2><p>说到区块链，可能会分为币圈和链圈。币圈主要是投资人来发行数字货币，链圈更关于区块链技术本身。因为现在比特币价格又跌下来了，韭菜也割了一茬又一茬了，所以大家可能会对币圈嗤之以鼻，但是，应该来说，我们绕不过去区块链的货币属性。中本聪发表了一篇《一种点对点的现金支付系统》的论文，阐述了他对电子货币的新构想。2009年1月3日，中本聪在位于芬兰赫尔辛基的一个小型服务器上挖出了比特币的第一个区块——创世区块（Genesis Block），并获得了首矿”奖励——50个比特币。’Chancellor on brink of second bailout for banks。’在创世区块中，中本聪写下了这句话。而写下这句话的原因，就在于目前的货币体系并不能够让人满意，让我们的生活中出现了许多“魔幻现实主义”。举个例子：“Mariana Catalina Izaguirre女士在她简陋的房子已经居住了三十年，但洪都拉斯的警察在2009年突然要将她赶走。不同于她在特古西加尔巴的许多邻居（特古西加尔巴是洪都拉斯的首都），她其实拥有所居住房子的土地凭证。但国家产权局的记录显示，另一个人也登记了这个房子，于是那人说服法官申请驱逐令。虽然法院最后终于弄清楚房屋的真正所有者就是Izaguirre女士，但Izaguirre女士的房子已被拆毁了。”这里，出现这种问题的本质原因是什么？答案就是中心化。而区块链是一个去中心化的可信系统。</p>
-<p>现在我们实行的是信用本位制。信用本位制度的广泛实行是本世纪30年代经济危机和货币危机的结果之一。其主要特征是： </p>
-<ul>
-<li>①在流通中执行货币职能的是纸币和银行存款。</li>
-<li>②各国货币规定的含金量仅是名义的，不能按此单位兑换黄金。</li>
-<li>③黄金不再是一国货币发行的准备，国家的货币供应量取决于一国政府对经济发展或其他因素的判断而制订的货币政策。</li>
-</ul>
-<p>这样的好处是，发行货币的代价小，而且能受国家控制。那坏处也是有的，就像上面的那么多毁灭性的例子。</p>
-<p>I’ve been working on bitcoin’s design since 2007. At some point I became convinced there was a way to do this without any trust required at all and couldn’t resist to keep thinking about it.我从2007年开始设计比特币。从某一刻开始我确信这世上存在一种完全不依赖信用的货币。我无法阻止自己去思考它。</p>
-<p>Lost coins only make everyone else’s coins worth slightly more. Think of it as a donation to everyone.丢失比特币只是让别人的币更有价值罢了。将它视作对所有人的捐赠吧。</p>
-<p>现在，比特币除了投资价值之外，也已经进入流通，快捷、安全、匿名、无国界。那么，中本聪创造的这个系统，所产生的电子货币到底有什么好处？相比于现有的货币系统，它的优势在哪里？</p>
-<p>设计一种电子货币，使得它能够像现金一样使用，以及不依赖于第三方组织。首先要考虑：</p>
-<ol>
-<li>如何生成货币：谁能获得这个货币，获得货币不能太容易，正如必须工作才能获得报酬；</li>
-<li>如何将货币与所有者关联起来：现下的环境中，信用卡实名制，现金匿名；</li>
-<li>如何保护交易双方：保护卖家，防止买家对支付进行回滚；保护买家，卖家对交易不能抵赖；</li>
-<li>如何防止双花（double-spending）：所谓sh对于现金不存在双重支付的问题，花出去了，就没有了；如果是基于信用的，有可能重花；现实中，人们不是防止重花而是在检测出重花之后加以重罚。数字货币是完全虚拟的货币，也即一串数字就代表一块币，这个数字可以被无穷次的利用，怎么样能够防止双花呢？</li>
-<li>如何记账：每一笔交易有据可查，同时保护用户的隐私</li>
-</ol>
-<p>比特币的各种特性，都是通过一系列的技术，特别是密码学的特性来保证的。<br>中本聪曾是Cypher Punk中活跃的一员，1992年，曾任Intel的高级科学家和电子工程师的蒂莫西·梅（Tim May）创建了crypto匿名邮件列表，这个邮件列表有接收加密邮件、擦除所有身份标记、并将它们发送回用户列表的功能。多达1400个极客们得以聚在一起匿名交流、写作，肆无忌惮的在无人监管之地，自由的表达着自己的想法。这些人，后来都成为密码朋克组织的一员。</p>
-<p>他们中的很多人，都在后来互联网的发展中，有着举足轻重的影响力：</p>
-<ul>
-<li>Tim May（英特尔公司前首席科学家）</li>
-<li>John Gilmore（太阳微系统公司的明星员工）</li>
-<li>David Chaum （大卫乔姆）</li>
-<li>Phil Zimmerman （PGP技术的开发者）<br>Julian Assange（维基解密创始人）</li>
-<li>Adam Back （亚当·拜克）</li>
-<li>Wei-Dai （B-money提出者）</li>
-<li>Hal Finney （PGP加密的发明人之一）</li>
-<li>Tim-Berners Lee 爵士 (万维网发明者)</li>
-<li>John Perry Barlow (赛博自由主义政治活动家)</li>
-<li>Nick Szabo（BitGold 发明人，智能合约的发明人）</li>
-<li>中本聪</li>
-</ul>
-<p>正是这些英才们的贡献，才使得比特币理论全部搭建完毕</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1049,7 +1023,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
