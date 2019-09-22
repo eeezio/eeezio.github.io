@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="哈希表,算法">
+  <meta name="keywords" content="体系结构,">
 
 
 
@@ -79,20 +79,18 @@
 
 
 
-<meta name="description" content="利用哈希表把复杂度降低一个数量级">
-<meta name="keywords" content="哈希表,算法">
+<meta name="description" content="考前复习用的">
+<meta name="keywords" content="体系结构">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode 001 两数之和(附加unorder_map的使用)">
-<meta property="og:url" content="http://yoursite.com/2019/09/17/leetcode-001-两数之和/index.html">
+<meta property="og:title" content="深入理解计算机系统第二章作业">
+<meta property="og:url" content="http://yoursite.com/2019/09/22/深入理解计算机系统第二章作业/index.html">
 <meta property="og:site_name" content="Mortal">
-<meta property="og:description" content="利用哈希表把复杂度降低一个数量级">
+<meta property="og:description" content="考前复习用的">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/2019/09/17/leetcode-001-两数之和/leetcode001.jpg">
-<meta property="og:updated_time" content="2019-09-20T15:53:13.042Z">
+<meta property="og:updated_time" content="2019-09-22T07:34:07.775Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode 001 两数之和(附加unorder_map的使用)">
-<meta name="twitter:description" content="利用哈希表把复杂度降低一个数量级">
-<meta name="twitter:image" content="http://yoursite.com/2019/09/17/leetcode-001-两数之和/leetcode001.jpg">
+<meta name="twitter:title" content="深入理解计算机系统第二章作业">
+<meta name="twitter:description" content="考前复习用的">
 
 
 
@@ -122,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/09/17/leetcode-001-两数之和/">
+  <link rel="canonical" href="http://yoursite.com/2019/09/22/深入理解计算机系统第二章作业/">
 
 
 
 
 
-  <title>leetcode 001 两数之和(附加unorder_map的使用) | Mortal</title>
+  <title>深入理解计算机系统第二章作业 | Mortal</title>
   
 
 
@@ -235,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/17/leetcode-001-两数之和/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/22/深入理解计算机系统第二章作业/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mortal">
@@ -252,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">leetcode 001 两数之和(附加unorder_map的使用)</h1>
+          <h1 class="post-title" itemprop="name headline">深入理解计算机系统第二章作业</h1>
         
 
         <div class="post-meta">
@@ -264,8 +262,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-17T18:14:06+08:00">
-                2019-09-17
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-22T15:32:17+08:00">
+                2019-09-22
               </time>
             
 
@@ -289,7 +287,7 @@
 
           
               <div class="post-description">
-                  利用哈希表把复杂度降低一个数量级
+                  考前复习用的
               </div>
           
 
@@ -306,22 +304,36 @@
       
 
       
-        <h1 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h1><p>给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。</p>
-<p>你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。</p>
-<p>示例:</p>
-<p>给定 nums = [2, 7, 11, 15], target = 9</p>
-<p>因为 nums[0] + nums[1] = 2 + 7 = 9<br>所以返回 [0, 1]</p>
-<h1 id="unorder-map介绍"><a href="#unorder-map介绍" class="headerlink" title="unorder_map介绍:"></a>unorder_map介绍:</h1><p>这题首先可以想到用两个for循环解决，复杂度$$O(n^2)$$，当然，这个方法太笨了，不是我们想要的，我们可以通过一边哈希表的遍历就可以得出结果。我们可以使用C++的STL中的unorder_map来实现哈希表。unorder_map和map的区别就在于，前者是无序的，而后者的底层通过红黑树来实现，是有序的，所以在此题中，使用前者要比使用后者速度快。下面介绍几个unorder_map的常规用法：</p>
-<h2 id="插入数据："><a href="#插入数据：" class="headerlink" title="插入数据："></a>插入数据：</h2><p>unorder_map要求键是唯一的，当我们需要插入数据的时候，可以使用如下代码：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">unorder_map&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; mp;</span><br><span class="line">mp[target]=i;</span><br></pre></td></tr></table></figure>
+        <h1 id="程序设计与计算机系统-第一次作业-王哲-SA19225387"><a href="#程序设计与计算机系统-第一次作业-王哲-SA19225387" class="headerlink" title="程序设计与计算机系统 第一次作业 王哲 SA19225387"></a>程序设计与计算机系统 第一次作业 王哲 SA19225387</h1><h2 id="2-58"><a href="#2-58" class="headerlink" title="2.58"></a>2.58</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">is_little_endian</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">1</span>;</span><br><span class="line">    pointer *p = &amp;a;<span class="comment">//pointer为自己定义的一个指针，它指向等号右边变量的低地址部分的一个字节。</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">int</span>(*p);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="通过值来寻找键名："><a href="#通过值来寻找键名：" class="headerlink" title="通过值来寻找键名："></a>通过值来寻找键名：</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">it=mp.find(value);<span class="comment">//返回的是一个迭代器，如果没有值对应的键的话，返回mp.end()</span></span><br><span class="line"><span class="built_in">printf</span>(it-&gt;first);<span class="comment">//打印键</span></span><br><span class="line"><span class="built_in">printf</span>(it-&gt;second);<span class="comment">//打印值</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-61"><a href="#2-61" class="headerlink" title="2.61"></a>2.61</h2><p>A.  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!(~x)</span><br></pre></td></tr></table></figure>
 
-<h1 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h1><p>此题需要注意的一点是，‘你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。’这句话。比如输入nums[3,3],target为6，返回的应该是0，1而不是0，0.我们在遍历nums时同时建立哈希表，用target减去我们当前遍历到的数值，如果得到的值存在于哈希表中，就证明我们找到了那两个下标。如果不存在，我们就把当前遍历到的值映射到哈希表中，这样一来也能避免刚刚提到的“0，0”问题。这样一来，我们就将复杂度降低到了$$O(n)$$.</p>
-<p>code:</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; twoSum(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;nums, <span class="keyword">int</span> target)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; mp;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ans;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> k = target - nums[i];</span><br><span class="line">            <span class="keyword">if</span> (mp.find(k) != mp.end())</span><br><span class="line">            &#123;</span><br><span class="line">                ans.push_back(i);</span><br><span class="line">                ans.push_back(mp[k]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                mp[nums[i]] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>B.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!(x)</span><br></pre></td></tr></table></figure>
 
-<h1 id="提交结果："><a href="#提交结果：" class="headerlink" title="提交结果："></a>提交结果：</h1><p>成绩还不错，时间复杂度击败了93.5%的用户<br><img src="/2019/09/17/leetcode-001-两数之和/leetcode001.jpg" alt></p>
+<p>C.<br><strong>注:c语言中，无论是有符号数还是无符号数，左移都是逻辑左移。</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!((x&lt;&lt;<span class="number">24</span>)^<span class="number">0xFF000000</span>)</span><br></pre></td></tr></table></figure>
+
+<p>D.<br><strong>注:c语言中，无符号数右移是逻辑右移，有符号数右移是算数右移。</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">((x&gt;&gt;<span class="number">24</span>)&amp;<span class="number">0xFFFFFFFF</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-77"><a href="#2-77" class="headerlink" title="2.77"></a>2.77</h2><p>A.  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(x &lt;&lt; <span class="number">4</span>) + x</span><br></pre></td></tr></table></figure>
+
+<p>B.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x - (x &lt;&lt; <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+
+<p>C.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(x &lt;&lt; <span class="number">6</span>) - (x &lt;&lt; <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<p>D.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(x &lt;&lt; <span class="number">4</span>) - (x &lt;&lt; <span class="number">7</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-84"><a href="#2-84" class="headerlink" title="2.84"></a>2.84</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(sx&gt;sy||((sx&amp;&amp;sy)&amp;&amp;ux&lt;=uy)||((!sx&amp;&amp;!sy)&amp;&amp;ux&gt;=uy)||((ux&lt;&lt;<span class="number">1</span>)&amp;<span class="number">0x00000000</span>)==((uy&lt;&lt;<span class="number">1</span>)&amp;<span class="number">0x00000000</span>))</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-89"><a href="#2-89" class="headerlink" title="2.89"></a>2.89</h2><p>A.错误。因为int向float转换可能有精度损失，而int向double转换没有精度损失，double向float转换也没有精度损失。如果一个整形数的值大于$2^{24}$,float就可能无法精确表达。A中表达式左边等价于int向float转换，右边等价于先向double转换再向float转换。所以等号左边的值可能有精度损失，右边没有，故表达式不成立。<br>B.错误。举例:X_MAX-X_MIN会超越int表示范围，从而使得表达式左边为负数，而右侧进行强制类型转换后，可表示的范围远超int范围，所以依然保持X_MAX-X_MIN的正确结果，故等式不成立。<br>C.正确。在该问中，表达式的值不会溢出，故正确。<br>D.错误。与A问同理，如果一个数大于$2^{53}$,double就有可能无法精确表示。而三个int类型变量相乘，其真实值可能大于$2^{53}$，故表达式不成立。<br>E.错误。若存在x或y等于0，则表达式不成立。</p>
+<h2 id="2-91"><a href="#2-91" class="headerlink" title="2.91"></a>2.91</h2><p>A.经计算，二进制小数为$3.141593$<br>B.$\frac{22}{7}=3+\frac{1}{7}$ 经转换后，按二进制小数表示为$11.001001001$(小数点后的001无限循环)<br>C.将$\frac{223}{71}$进行B问中的同理转换后，可得出在第九位开始不同。</p>
 
       
     </div>
@@ -339,7 +351,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/算法与数据结构/" rel="tag"># 算法与数据结构</a>
+            <a href="/tags/体系结构/" rel="tag"># 体系结构</a>
           
         </div>
       
@@ -352,15 +364,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/09/22/leetcode-005-最长回文子串/" rel="next" title="leetcode 005 最长回文子串">
+                <i class="fa fa-chevron-left"></i> leetcode 005 最长回文子串
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/09/18/网络信息安全实验室-解题收获-第一弹/" rel="prev" title="网络信息安全实验室 基础关 wp">
-                网络信息安全实验室 基础关 wp <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -483,7 +495,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目描述："><span class="nav-number">1.</span> <span class="nav-text">题目描述：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#unorder-map介绍"><span class="nav-number">2.</span> <span class="nav-text">unorder_map介绍:</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#插入数据："><span class="nav-number">2.1.</span> <span class="nav-text">插入数据：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过值来寻找键名："><span class="nav-number">2.2.</span> <span class="nav-text">通过值来寻找键名：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题思路："><span class="nav-number">3.</span> <span class="nav-text">解题思路：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#提交结果："><span class="nav-number">4.</span> <span class="nav-text">提交结果：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#程序设计与计算机系统-第一次作业-王哲-SA19225387"><span class="nav-number">1.</span> <span class="nav-text">程序设计与计算机系统 第一次作业 王哲 SA19225387</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-58"><span class="nav-number">1.1.</span> <span class="nav-text">2.58</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-61"><span class="nav-number">1.2.</span> <span class="nav-text">2.61</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-77"><span class="nav-number">1.3.</span> <span class="nav-text">2.77</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-84"><span class="nav-number">1.4.</span> <span class="nav-text">2.84</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-89"><span class="nav-number">1.5.</span> <span class="nav-text">2.89</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-91"><span class="nav-number">1.6.</span> <span class="nav-text">2.91</span></a></li></ol></li></ol></div>
             
 
           </div>

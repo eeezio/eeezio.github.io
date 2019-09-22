@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="哈希表,算法">
+  <meta name="keywords" content="数据结构与算法,">
 
 
 
@@ -79,20 +79,18 @@
 
 
 
-<meta name="description" content="利用哈希表把复杂度降低一个数量级">
-<meta name="keywords" content="哈希表,算法">
+<meta name="description" content="自闭了这题都没立即AC">
+<meta name="keywords" content="数据结构与算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode 001 两数之和(附加unorder_map的使用)">
-<meta property="og:url" content="http://yoursite.com/2019/09/17/leetcode-001-两数之和/index.html">
+<meta property="og:title" content="leetcode 005 最长回文子串">
+<meta property="og:url" content="http://yoursite.com/2019/09/22/leetcode-005-最长回文子串/index.html">
 <meta property="og:site_name" content="Mortal">
-<meta property="og:description" content="利用哈希表把复杂度降低一个数量级">
+<meta property="og:description" content="自闭了这题都没立即AC">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/2019/09/17/leetcode-001-两数之和/leetcode001.jpg">
-<meta property="og:updated_time" content="2019-09-20T15:53:13.042Z">
+<meta property="og:updated_time" content="2019-09-22T07:34:02.359Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode 001 两数之和(附加unorder_map的使用)">
-<meta name="twitter:description" content="利用哈希表把复杂度降低一个数量级">
-<meta name="twitter:image" content="http://yoursite.com/2019/09/17/leetcode-001-两数之和/leetcode001.jpg">
+<meta name="twitter:title" content="leetcode 005 最长回文子串">
+<meta name="twitter:description" content="自闭了这题都没立即AC">
 
 
 
@@ -122,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/09/17/leetcode-001-两数之和/">
+  <link rel="canonical" href="http://yoursite.com/2019/09/22/leetcode-005-最长回文子串/">
 
 
 
 
 
-  <title>leetcode 001 两数之和(附加unorder_map的使用) | Mortal</title>
+  <title>leetcode 005 最长回文子串 | Mortal</title>
   
 
 
@@ -235,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/17/leetcode-001-两数之和/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/22/leetcode-005-最长回文子串/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mortal">
@@ -252,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">leetcode 001 两数之和(附加unorder_map的使用)</h1>
+          <h1 class="post-title" itemprop="name headline">leetcode 005 最长回文子串</h1>
         
 
         <div class="post-meta">
@@ -264,8 +262,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-17T18:14:06+08:00">
-                2019-09-17
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-22T15:11:12+08:00">
+                2019-09-22
               </time>
             
 
@@ -289,7 +287,7 @@
 
           
               <div class="post-description">
-                  利用哈希表把复杂度降低一个数量级
+                  自闭了这题都没立即AC
               </div>
           
 
@@ -306,23 +304,20 @@
       
 
       
-        <h1 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h1><p>给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。</p>
-<p>你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。</p>
-<p>示例:</p>
-<p>给定 nums = [2, 7, 11, 15], target = 9</p>
-<p>因为 nums[0] + nums[1] = 2 + 7 = 9<br>所以返回 [0, 1]</p>
-<h1 id="unorder-map介绍"><a href="#unorder-map介绍" class="headerlink" title="unorder_map介绍:"></a>unorder_map介绍:</h1><p>这题首先可以想到用两个for循环解决，复杂度$$O(n^2)$$，当然，这个方法太笨了，不是我们想要的，我们可以通过一边哈希表的遍历就可以得出结果。我们可以使用C++的STL中的unorder_map来实现哈希表。unorder_map和map的区别就在于，前者是无序的，而后者的底层通过红黑树来实现，是有序的，所以在此题中，使用前者要比使用后者速度快。下面介绍几个unorder_map的常规用法：</p>
-<h2 id="插入数据："><a href="#插入数据：" class="headerlink" title="插入数据："></a>插入数据：</h2><p>unorder_map要求键是唯一的，当我们需要插入数据的时候，可以使用如下代码：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">unorder_map&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; mp;</span><br><span class="line">mp[target]=i;</span><br></pre></td></tr></table></figure>
-
-<h2 id="通过值来寻找键名："><a href="#通过值来寻找键名：" class="headerlink" title="通过值来寻找键名："></a>通过值来寻找键名：</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">it=mp.find(value);<span class="comment">//返回的是一个迭代器，如果没有值对应的键的话，返回mp.end()</span></span><br><span class="line"><span class="built_in">printf</span>(it-&gt;first);<span class="comment">//打印键</span></span><br><span class="line"><span class="built_in">printf</span>(it-&gt;second);<span class="comment">//打印值</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h1><p>此题需要注意的一点是，‘你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。’这句话。比如输入nums[3,3],target为6，返回的应该是0，1而不是0，0.我们在遍历nums时同时建立哈希表，用target减去我们当前遍历到的数值，如果得到的值存在于哈希表中，就证明我们找到了那两个下标。如果不存在，我们就把当前遍历到的值映射到哈希表中，这样一来也能避免刚刚提到的“0，0”问题。这样一来，我们就将复杂度降低到了$$O(n)$$.</p>
+        <h1 id="吐槽："><a href="#吐槽：" class="headerlink" title="吐槽："></a>吐槽：</h1><p>两个月不刷题果然退步的没法看了，这题竟然做了半天都没过(，还是翻之前的笔记过的orz</p>
+<h1 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h1><p>给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。</p>
+<p>示例 1：</p>
+<p>输入: “babad”<br>输出: “bab”<br>注意: “aba” 也是一个有效答案。<br>示例 2：</p>
+<p>输入: “cbbd”<br>输出: “bb”</p>
+<h1 id="思路分析："><a href="#思路分析：" class="headerlink" title="思路分析："></a>思路分析：</h1><p>这题是动态规划经典题。有很多需要注意的点，列举如下:  </p>
+<ol>
+<li>dp数组为二维的，其两个下标i和j分别表示下标从i到j的子串是否为回文串。</li>
+<li>边界条件的设置，不仅要设置每个dp[i][i]=1,而且要对dp[i][i+1]也做个判断。</li>
+<li>状态转移方程为，(dp[i+1][j-1]==1)?dp[i][j]=1:dp[i][j]=0</li>
+<li>如果普通写个嵌套for循环来给dp数组求值会得不到正确答案。比如，假如i=0，当j=5时，dp[1][4]的值还没求出来。所以我们要做的就是令len=3，求从3开始依次求到s.length()长度的字串的dp数组。</li>
+</ol>
 <p>code:</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; twoSum(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;nums, <span class="keyword">int</span> target)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; mp;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ans;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> k = target - nums[i];</span><br><span class="line">            <span class="keyword">if</span> (mp.find(k) != mp.end())</span><br><span class="line">            &#123;</span><br><span class="line">                ans.push_back(i);</span><br><span class="line">                ans.push_back(mp[k]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                mp[nums[i]] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h1 id="提交结果："><a href="#提交结果：" class="headerlink" title="提交结果："></a>提交结果：</h1><p>成绩还不错，时间复杂度击败了93.5%的用户<br><img src="/2019/09/17/leetcode-001-两数之和/leetcode001.jpg" alt></p>
-
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">longestPalindrome</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len = s.length();</span><br><span class="line">    <span class="keyword">int</span> **dp = <span class="keyword">new</span> <span class="keyword">int</span> *[len];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">        dp[i] = <span class="keyword">new</span> <span class="keyword">int</span>[len];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        dp[i][i] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(i!=len<span class="number">-1</span>)</span><br><span class="line">        dp[i][i + <span class="number">1</span>] = (s[i] == s[i + <span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> L = <span class="number">3</span>; L &lt;= len; L++)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i+L<span class="number">-1</span> &lt; len; i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> j=i+L<span class="number">-1</span>;</span><br><span class="line">            (s[i] == s[j] &amp;&amp; dp[i + <span class="number">1</span>][j - <span class="number">1</span>] == <span class="number">1</span>) ? dp[i][j] = <span class="number">1</span> : dp[i][j] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">int</span> max = <span class="number">-1</span>, low;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; len; j++)</span><br><span class="line">            <span class="keyword">if</span> (dp[i][j] == <span class="number">1</span> &amp;&amp; (j - i) &gt; max)</span><br><span class="line">            &#123;</span><br><span class="line">                max = j - i;</span><br><span class="line">                low = i;</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">string</span> ans;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; max + <span class="number">1</span>; i++)</span><br><span class="line">        ans+= s[low + i];</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -339,7 +334,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/算法与数据结构/" rel="tag"># 算法与数据结构</a>
+            <a href="/tags/数据结构与算法/" rel="tag"># 数据结构与算法</a>
           
         </div>
       
@@ -352,14 +347,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/09/20/数据挖掘竞赛技巧之模型融合中的stacking/" rel="next" title="数据挖掘竞赛技巧之模型融合中的stacking方法">
+                <i class="fa fa-chevron-left"></i> 数据挖掘竞赛技巧之模型融合中的stacking方法
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/09/18/网络信息安全实验室-解题收获-第一弹/" rel="prev" title="网络信息安全实验室 基础关 wp">
-                网络信息安全实验室 基础关 wp <i class="fa fa-chevron-right"></i>
+              <a href="/2019/09/22/深入理解计算机系统第二章作业/" rel="prev" title="深入理解计算机系统第二章作业">
+                深入理解计算机系统第二章作业 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -483,7 +482,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目描述："><span class="nav-number">1.</span> <span class="nav-text">题目描述：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#unorder-map介绍"><span class="nav-number">2.</span> <span class="nav-text">unorder_map介绍:</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#插入数据："><span class="nav-number">2.1.</span> <span class="nav-text">插入数据：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过值来寻找键名："><span class="nav-number">2.2.</span> <span class="nav-text">通过值来寻找键名：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题思路："><span class="nav-number">3.</span> <span class="nav-text">解题思路：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#提交结果："><span class="nav-number">4.</span> <span class="nav-text">提交结果：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#吐槽："><span class="nav-number">1.</span> <span class="nav-text">吐槽：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#题目描述："><span class="nav-number">2.</span> <span class="nav-text">题目描述：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思路分析："><span class="nav-number">3.</span> <span class="nav-text">思路分析：</span></a></li></ol></div>
             
 
           </div>
