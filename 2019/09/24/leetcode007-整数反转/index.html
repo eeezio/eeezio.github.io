@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="本题的精髓是用vector代替二维数组">
+<meta name="description" content="这题主要是注意如何判溢出。">
 <meta name="keywords" content="数据结构与算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode 006 Z 字形变换">
-<meta property="og:url" content="http://yoursite.com/2019/09/23/leetcode-006-Z-字形变换/index.html">
+<meta property="og:title" content="leetcode007 整数反转">
+<meta property="og:url" content="http://yoursite.com/2019/09/24/leetcode007-整数反转/index.html">
 <meta property="og:site_name" content="Mortal">
-<meta property="og:description" content="本题的精髓是用vector代替二维数组">
+<meta property="og:description" content="这题主要是注意如何判溢出。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-23T04:32:50.635Z">
+<meta property="og:updated_time" content="2019-09-24T07:19:11.052Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode 006 Z 字形变换">
-<meta name="twitter:description" content="本题的精髓是用vector代替二维数组">
+<meta name="twitter:title" content="leetcode007 整数反转">
+<meta name="twitter:description" content="这题主要是注意如何判溢出。">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/09/23/leetcode-006-Z-字形变换/">
+  <link rel="canonical" href="http://yoursite.com/2019/09/24/leetcode007-整数反转/">
 
 
 
 
 
-  <title>leetcode 006 Z 字形变换 | Mortal</title>
+  <title>leetcode007 整数反转 | Mortal</title>
   
 
 
@@ -233,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/23/leetcode-006-Z-字形变换/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/24/leetcode007-整数反转/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mortal">
@@ -250,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">leetcode 006 Z 字形变换</h1>
+          <h1 class="post-title" itemprop="name headline">leetcode007 整数反转</h1>
         
 
         <div class="post-meta">
@@ -262,8 +262,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-23T11:56:05+08:00">
-                2019-09-23
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-24T15:12:31+08:00">
+                2019-09-24
               </time>
             
 
@@ -287,7 +287,7 @@
 
           
               <div class="post-description">
-                  本题的精髓是用vector代替二维数组
+                  这题主要是注意如何判溢出。
               </div>
           
 
@@ -304,22 +304,16 @@
       
 
       
-        <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>将一个给定字符串根据给定的行数，以从上往下、从左到右进行 Z 字形排列。</p>
-<p>比如输入字符串为 “LEETCODEISHIRING” 行数为 3 时，排列如下：</p>
-<p>L   C   I   R<br>E T O E S I I G<br>E   D   H   N<br>之后，你的输出需要从左往右逐行读取，产生出一个新的字符串，比如：”LCIRETOESIIGEDHN”。</p>
-<p>请你实现这个将字符串进行指定行数变换的函数：</p>
-<p>string convert(string s, int numRows);<br>示例 1:</p>
-<p>输入: s = “LEETCODEISHIRING”, numRows = 3<br>输出: “LCIRETOESIIGEDHN”<br>示例 2:</p>
-<p>输入: s = “LEETCODEISHIRING”, numRows = 4<br>输出: “LDREOEIIECIHNTSG”<br>解释:</p>
-<p>L     D     R<br>E   O E   I I<br>E C   I H   N<br>T     S     G</p>
-<h1 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h1><p>这题解法也是多种，有一种解法是寻找原字符串与新字符串下标之间的对应关系，老实说对我来讲短时间内找出来不太容易，，第二种方法就是按题目描述，用z的轨迹在一个二维数组中遍历一遍原串，最后按行序读取这个二维数组即可，不过这个方法在判断二维数组坐标的时候也需要花不少心思，题解中有一种非常不错的做法，不仅用vector替代了二维数组，而且用一个godown的布尔变量来控制vector下标的走向，非常巧妙，值得学习！<br>值得注意的是，在新的C++标准中，对于一个string s，里面的每个字符可以通过如下的for循环遍历</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">char</span> a:s)&#123;</span><br><span class="line">  <span class="keyword">do</span> something;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。</p>
+<p>示例 1:</p>
+<p>输入: 123<br>输出: 321<br> 示例 2:</p>
+<p>输入: -123<br>输出: -321<br>示例 3:</p>
+<p>输入: 120<br>输出: 21<br>注意:</p>
+<p>假设我们的环境只能存储得下 32 位的有符号整数，则其数值范围为 [−231,  231 − 1]。请根据这个假设，如果反转后整数溢出那么就返回 0。</p>
+<h1 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h1><p>这题我开始还拿栈来做的，然后发现没必要，，关键点就在代码里那个if判溢出的语句，没啥好说的，直接上代码吧，，</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">reverse</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> max = (<span class="built_in">pow</span>(<span class="number">2</span>, <span class="number">31</span>) - <span class="number">1</span>) / <span class="number">10</span>, min = <span class="built_in">pow</span>(<span class="number">-2</span>, <span class="number">31</span>) / <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">long</span> crr = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (x)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (crr &gt; max || (crr == max &amp;&amp; x % <span class="number">10</span> &gt; <span class="number">7</span>) || crr &lt; min || (crr == min &amp;&amp; x % <span class="number">10</span> &lt; <span class="number">-8</span>))</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        crr *= <span class="number">10</span>;</span><br><span class="line">        crr += x % <span class="number">10</span>;</span><br><span class="line">        x /= <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> crr;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<p>还有一点就是，我们可以给定vector的初始大小。具体做法为</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;type&gt; name(num);<span class="comment">//num为指定的大小数值。</span></span><br></pre></td></tr></table></figure>
 
-<p>code:</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">convert</span><span class="params">(<span class="built_in">string</span> s, <span class="keyword">int</span> numRows)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(numRows==<span class="number">1</span>) <span class="keyword">return</span> s;</span><br><span class="line">        <span class="keyword">int</span> len=s.length()&gt;numRows?numRows:s.length();</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; rows(len);</span><br><span class="line">        <span class="keyword">bool</span> godown;</span><br><span class="line">        <span class="keyword">int</span> Cur_rows=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">char</span> a:s)&#123;</span><br><span class="line">        <span class="keyword">if</span>(Cur_rows==<span class="number">0</span>) godown=<span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(Cur_rows==numRows<span class="number">-1</span>) godown=<span class="literal">false</span>;</span><br><span class="line">        rows[Cur_rows]+=a;</span><br><span class="line">        Cur_rows+=godown?<span class="number">1</span>:<span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">string</span> ans;</span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">string</span> a:rows) ans+=a;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -349,8 +343,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/09/22/程序设计与计算机系统第一次作业/" rel="next" title="程序设计与计算机系统第一次作业">
-                <i class="fa fa-chevron-left"></i> 程序设计与计算机系统第一次作业
+              <a href="/2019/09/23/leetcode-006-Z-字形变换/" rel="next" title="leetcode 006 Z 字形变换">
+                <i class="fa fa-chevron-left"></i> leetcode 006 Z 字形变换
               </a>
             
           </div>
@@ -358,10 +352,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/09/24/leetcode007-整数反转/" rel="prev" title="leetcode007 整数反转">
-                leetcode007 整数反转 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
