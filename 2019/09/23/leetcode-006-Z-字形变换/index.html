@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Mortal">
 <meta property="og:description" content="本题的精髓是用vector代替二维数组">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-23T04:32:50.635Z">
+<meta property="og:updated_time" content="2019-09-27T03:44:10.398Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode 006 Z 字形变换">
 <meta name="twitter:description" content="本题的精髓是用vector代替二维数组">
@@ -312,7 +312,7 @@
 <p>输入: s = “LEETCODEISHIRING”, numRows = 3<br>输出: “LCIRETOESIIGEDHN”<br>示例 2:</p>
 <p>输入: s = “LEETCODEISHIRING”, numRows = 4<br>输出: “LDREOEIIECIHNTSG”<br>解释:</p>
 <p>L     D     R<br>E   O E   I I<br>E C   I H   N<br>T     S     G</p>
-<h1 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h1><p>这题解法也是多种，有一种解法是寻找原字符串与新字符串下标之间的对应关系，老实说对我来讲短时间内找出来不太容易，，第二种方法就是按题目描述，用z的轨迹在一个二维数组中遍历一遍原串，最后按行序读取这个二维数组即可，不过这个方法在判断二维数组坐标的时候也需要花不少心思，题解中有一种非常不错的做法，不仅用vector替代了二维数组，而且用一个godown的布尔变量来控制vector下标的走向，非常巧妙，值得学习！<br>值得注意的是，在新的C++标准中，对于一个string s，里面的每个字符可以通过如下的for循环遍历</p>
+<h1 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h1><p>这题解法也是多种，有一种解法是寻找原字符串与新字符串下标之间的对应关系，老实说对我来讲短时间内找出来不太容易，，第二种方法就是按题目描述，用z的轨迹在一个二维数组中遍历一遍原串，最后按行序读取这个二维数组即可，不过这个方法在判断二维数组坐标的时候也需要花不少心思，题解中有一种非常不错的做法，不仅用vector替代了二维数组，而且用一个godown的布尔变量来控制vector下标的走向，非常巧妙，值得学习！<br>值得注意的是，在新的C++标准中，对于一个string s，里面的每个字符可以通过如下的for循环遍历(其实就是for-each循环)</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">char</span> a:s)&#123;</span><br><span class="line">  <span class="keyword">do</span> something;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>还有一点就是，我们可以给定vector的初始大小。具体做法为</p>
@@ -438,7 +438,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

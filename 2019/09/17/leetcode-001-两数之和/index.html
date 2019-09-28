@@ -88,7 +88,7 @@
 <meta property="og:description" content="利用哈希表把复杂度降低一个数量级">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/2019/09/17/leetcode-001-两数之和/leetcode001.jpg">
-<meta property="og:updated_time" content="2019-09-20T15:53:13.042Z">
+<meta property="og:updated_time" content="2019-09-28T09:26:48.126Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode 001 两数之和(附加unorder_map的使用)">
 <meta name="twitter:description" content="利用哈希表把复杂度降低一个数量级">
@@ -311,7 +311,7 @@
 <p>示例:</p>
 <p>给定 nums = [2, 7, 11, 15], target = 9</p>
 <p>因为 nums[0] + nums[1] = 2 + 7 = 9<br>所以返回 [0, 1]</p>
-<h1 id="unorder-map介绍"><a href="#unorder-map介绍" class="headerlink" title="unorder_map介绍:"></a>unorder_map介绍:</h1><p>这题首先可以想到用两个for循环解决，复杂度$$O(n^2)$$，当然，这个方法太笨了，不是我们想要的，我们可以通过一边哈希表的遍历就可以得出结果。我们可以使用C++的STL中的unorder_map来实现哈希表。unorder_map和map的区别就在于，前者是无序的，而后者的底层通过红黑树来实现，是有序的，所以在此题中，使用前者要比使用后者速度快。下面介绍几个unorder_map的常规用法：</p>
+<h1 id="unorder-map介绍"><a href="#unorder-map介绍" class="headerlink" title="unorder_map介绍:"></a>unorder_map介绍:</h1><p>这题首先可以想到用两个for循环解决，复杂度$$O(n^2)$$，当然，这个方法太笨了，不是我们想要的，我们可以通过一边哈希表的遍历就可以得出结果。我们可以使用C++的STL中的unorder_map来实现哈希表。unorder_map和map的区别就在于，前者是无序的(这里所谓的无序，是真正的完全无序，与插入顺序也没有关系)，而后者的底层通过红黑树来实现，是有序的，所以在此题中，使用前者要比使用后者速度快。下面介绍几个unorder_map的常规用法：</p>
 <h2 id="插入数据："><a href="#插入数据：" class="headerlink" title="插入数据："></a>插入数据：</h2><p>unorder_map要求键是唯一的，当我们需要插入数据的时候，可以使用如下代码：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">unorder_map&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; mp;</span><br><span class="line">mp[target]=i;</span><br></pre></td></tr></table></figure>
 
@@ -437,7 +437,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

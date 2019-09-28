@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="这题主要是注意如何判溢出。">
+<meta name="description" content="双指针法与反证法比较巧妙。">
 <meta name="keywords" content="数据结构与算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode007 整数反转">
-<meta property="og:url" content="http://yoursite.com/2019/09/24/leetcode007-整数反转/index.html">
+<meta property="og:title" content="leetcode 011 盛最多水的容器">
+<meta property="og:url" content="http://yoursite.com/2019/09/26/leetcode-011-盛最多水的容器/index.html">
 <meta property="og:site_name" content="Mortal">
-<meta property="og:description" content="这题主要是注意如何判溢出。">
+<meta property="og:description" content="双指针法与反证法比较巧妙。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-24T07:19:11.052Z">
+<meta property="og:updated_time" content="2019-09-26T03:55:19.057Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode007 整数反转">
-<meta name="twitter:description" content="这题主要是注意如何判溢出。">
+<meta name="twitter:title" content="leetcode 011 盛最多水的容器">
+<meta name="twitter:description" content="双指针法与反证法比较巧妙。">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/09/24/leetcode007-整数反转/">
+  <link rel="canonical" href="http://yoursite.com/2019/09/26/leetcode-011-盛最多水的容器/">
 
 
 
 
 
-  <title>leetcode007 整数反转 | Mortal</title>
+  <title>leetcode 011 盛最多水的容器 | Mortal</title>
   
 
 
@@ -233,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/24/leetcode007-整数反转/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/26/leetcode-011-盛最多水的容器/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mortal">
@@ -250,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">leetcode007 整数反转</h1>
+          <h1 class="post-title" itemprop="name headline">leetcode 011 盛最多水的容器</h1>
         
 
         <div class="post-meta">
@@ -262,8 +262,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-24T15:12:31+08:00">
-                2019-09-24
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-26T07:50:08+08:00">
+                2019-09-26
               </time>
             
 
@@ -287,7 +287,7 @@
 
           
               <div class="post-description">
-                  这题主要是注意如何判溢出。
+                  双指针法与反证法比较巧妙。
               </div>
           
 
@@ -304,15 +304,14 @@
       
 
       
-        <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。</p>
-<p>示例 1:</p>
-<p>输入: 123<br>输出: 321<br> 示例 2:</p>
-<p>输入: -123<br>输出: -321<br>示例 3:</p>
-<p>输入: 120<br>输出: 21<br>注意:</p>
-<p>假设我们的环境只能存储得下 32 位的有符号整数，则其数值范围为 [−231,  231 − 1]。请根据这个假设，如果反转后整数溢出那么就返回 0。</p>
-<h1 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h1><p>这题我开始还拿栈来做的，然后发现没必要，，关键点就在代码里那个if判溢出的语句，没啥好说的，直接上代码吧，，</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">reverse</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> max = (<span class="built_in">pow</span>(<span class="number">2</span>, <span class="number">31</span>) - <span class="number">1</span>) / <span class="number">10</span>, min = <span class="built_in">pow</span>(<span class="number">-2</span>, <span class="number">31</span>) / <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">long</span> crr = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (x)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (crr &gt; max || (crr == max &amp;&amp; x % <span class="number">10</span> &gt; <span class="number">7</span>) || crr &lt; min || (crr == min &amp;&amp; x % <span class="number">10</span> &lt; <span class="number">-8</span>))</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        crr *= <span class="number">10</span>;</span><br><span class="line">        crr += x % <span class="number">10</span>;</span><br><span class="line">        x /= <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> crr;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
+        <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给定 n 个非负整数 a1，a2，…，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。</p>
+<p>说明：你不能倾斜容器，且 n 的值至少为 2。<br>示例:</p>
+<p>输入: [1,8,6,2,5,4,8,3,7]<br>输出: 49</p>
+<h1 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h1><p>这题暴力的话很容易解，一个嵌套的for循环即可，不过速度不够理想，下面介绍双指针法，要点如下</p>
+<ol>
+<li>取数组的第一个元素和最后一个元素的下标，作为双指针的low和high。</li>
+<li>每次移动指针之前，先计算两个指针之间围成的面积，之后移动更短的那个指针，直到low与high重合，退出循环<h2 id="反证法证明该算法正确性"><a href="#反证法证明该算法正确性" class="headerlink" title="反证法证明该算法正确性"></a>反证法证明该算法正确性</h2>反证法思路也很明确，可以很容易的证出，如果每次移动的是较长的指针，无论如何获得的新面积都比原面积小。<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxArea</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;height)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> num = height.size();</span><br><span class="line">        <span class="keyword">int</span> max = <span class="number">0</span>, area;</span><br><span class="line">        <span class="keyword">int</span> low = <span class="number">0</span>, high = num - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (low != high)</span><br><span class="line">        &#123;</span><br><span class="line">            area = (high - low) * min(height[low], height[high]);</span><br><span class="line">            area &gt; max ? max = area : area = area;</span><br><span class="line">            height[low] &lt; height[high] ? low++ : high--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ol>
 
       
     </div>
@@ -343,8 +342,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/09/23/leetcode-006-Z-字形变换/" rel="next" title="leetcode 006 Z 字形变换">
-                <i class="fa fa-chevron-left"></i> leetcode 006 Z 字形变换
+              <a href="/2019/09/24/leetcode-008-字符串转换成整数/" rel="next" title="leetcode 008 字符串转换成整数">
+                <i class="fa fa-chevron-left"></i> leetcode 008 字符串转换成整数
               </a>
             
           </div>
@@ -353,8 +352,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/09/24/leetcode-008-字符串转换成整数/" rel="prev" title="leetcode 008 字符串转换成整数">
-                leetcode 008 字符串转换成整数 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/09/27/leetcode-012-整数转罗马数字/" rel="prev" title="leetcode 012 整数转罗马数字">
+                leetcode 012 整数转罗马数字 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -478,7 +477,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思路分析"><span class="nav-number">2.</span> <span class="nav-text">思路分析</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思路分析"><span class="nav-number">2.</span> <span class="nav-text">思路分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#反证法证明该算法正确性"><span class="nav-number">2.1.</span> <span class="nav-text">反证法证明该算法正确性</span></a></li></ol></li></ol></div>
             
 
           </div>
