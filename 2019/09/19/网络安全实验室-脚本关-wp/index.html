@@ -88,8 +88,7 @@
 <meta property="og:description" content="CTF基础刷题脚本篇">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/2019/09/19/网络安全实验室-脚本关-wp/example.jpg">
-<meta property="og:image" content="http://yoursite.com/2019/09/19/网络安全实验室-脚本关-wp/#">
-<meta property="og:updated_time" content="2019-09-28T09:46:44.159Z">
+<meta property="og:updated_time" content="2019-10-01T09:53:42.081Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络安全实验室 脚本关 wp">
 <meta name="twitter:description" content="CTF基础刷题脚本篇">
@@ -371,7 +370,12 @@
 <p>这题的html直接提示你用alert过关，点击提交后抓包，发现有个xss_check.php的脚本</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">orgAlert = window.alert;</span><br><span class="line">ok = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> HackingLab=<span class="string">"success!"</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">newAlert</span><span class="params">(a)</span> </span>&#123;</span><br><span class="line">    window.alert = orgAlert;</span><br><span class="line">    <span class="keyword">if</span> (a == HackingLab) &#123;</span><br><span class="line">        <span class="keyword">if</span> (ok == <span class="number">0</span>) ok = <span class="number">1</span>;</span><br><span class="line">        alert(a);</span><br><span class="line">        $.post(<span class="string">"./getkey.php?ok=1"</span>,&#123;<span class="string">'url'</span>:location.href,<span class="string">'ok'</span>:ok&#125;,<span class="function"><span class="keyword">function</span><span class="params">(data)</span></span>&#123;</span><br><span class="line">			console.log(data);</span><br><span class="line">        &#125;);</span><br><span class="line">        showkey();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        alert(a);</span><br><span class="line">        alert(<span class="string">"Please use alert(HackingLab)!!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">window.alert = newAlert;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showkey</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//XSS题目要自觉.....无论如何都是可以绕过的,索性不加密不编码js了,大家一起玩吧.</span></span><br><span class="line">	<span class="keyword">var</span> url=<span class="string">"./getkey.php"</span>;</span><br><span class="line">    $.post(url,&#123;<span class="string">"getkey"</span>:<span class="string">"Mortal"</span>&#125;,<span class="function"><span class="keyword">function</span><span class="params">(data)</span></span>&#123;</span><br><span class="line">	$(<span class="string">"#msg"</span>).text(data);</span><br><span class="line">    	</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>根据代码看，他是让你alert(HackingLab),但是直接输入<script>alert(HackingLab)</script>拿不到key，主要原因估计是出题的把script当成敏感字了，这样一来我们就需要用其他能直接调用alert的标签了(具体用啥我开始也不知道，也是百度的，，)<img src="/2019/09/19/网络安全实验室-脚本关-wp/#" onerror="alert(HackingLab)"></p>
+<p>根据代码看，他是让你alert(HackingLab),但是直接输入<script>alert(HackingLab)</script>拿不到key，主要原因是出题的把script当成敏感字给过滤掉了了，这样一来我们就需要用其他能直接调用alert的标签了(具体用啥我开始也不知道，也是百度的，，)输入&lt;img src=# onerror=alert(HackingLab) /&gt;即可</p>
+<h1 id="XSS基础3-检测与构造"><a href="#XSS基础3-检测与构造" class="headerlink" title="XSS基础3:检测与构造"></a>XSS基础3:检测与构造</h1><p>Tips:不是很难</p>
+<blockquote>
+<p><a href="http://lab1.xseclab.com/realxss3_9b28b0ff93d0b0099f5ac7f8bad3f368/index.php" target="_blank" rel="noopener">http://lab1.xseclab.com/realxss3_9b28b0ff93d0b0099f5ac7f8bad3f368/index.php</a>  </p>
+</blockquote>
+<p>这题明明就挺难的，，，我不会做也是看别人的wp做出来的，此题过滤了各种关键字，主要是想不通他们怎么发现alter后面的内容不会被过滤的，，，不过通过这题姑且学会了html中能执行js的又一个标签，onmouseover，通关需要输入的内容为<strong>alert’ onmouseover=alert(HackingLab)&gt;</strong>其中那个单引号是因为发现加一个’后只有之前的东西会在下面的Welcome框中显示，这个也是别人发现的，我猜可能是那个单引号就是输入变量的结束符吧。。</p>
 
       
     </div>
@@ -491,7 +495,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -537,7 +541,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2-快速口算"><span class="nav-number">1.</span> <span class="nav-text">2.快速口算</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-怎么就是不弹出key呢？"><span class="nav-number">2.</span> <span class="nav-text">4.怎么就是不弹出key呢？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-逗比验证码第一期"><span class="nav-number">3.</span> <span class="nav-text">5.逗比验证码第一期</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-逗比验证码第二期"><span class="nav-number">4.</span> <span class="nav-text">6.逗比验证码第二期</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-微笑一下就能过了"><span class="nav-number">5.</span> <span class="nav-text">8.微笑一下就能过了</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-基情燃烧的岁月"><span class="nav-number">6.</span> <span class="nav-text">10.基情燃烧的岁月</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#xss基础2：简单绕过"><span class="nav-number">7.</span> <span class="nav-text">xss基础2：简单绕过</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2-快速口算"><span class="nav-number">1.</span> <span class="nav-text">2.快速口算</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-怎么就是不弹出key呢？"><span class="nav-number">2.</span> <span class="nav-text">4.怎么就是不弹出key呢？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-逗比验证码第一期"><span class="nav-number">3.</span> <span class="nav-text">5.逗比验证码第一期</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-逗比验证码第二期"><span class="nav-number">4.</span> <span class="nav-text">6.逗比验证码第二期</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-微笑一下就能过了"><span class="nav-number">5.</span> <span class="nav-text">8.微笑一下就能过了</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-基情燃烧的岁月"><span class="nav-number">6.</span> <span class="nav-text">10.基情燃烧的岁月</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#xss基础2：简单绕过"><span class="nav-number">7.</span> <span class="nav-text">xss基础2：简单绕过</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#XSS基础3-检测与构造"><span class="nav-number">8.</span> <span class="nav-text">XSS基础3:检测与构造</span></a></li></ol></div>
             
 
           </div>
