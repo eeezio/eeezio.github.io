@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="区块链技术,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="ustc_sse区块链课程，不定期更新">
+<meta name="keywords" content="区块链技术">
+<meta property="og:type" content="article">
+<meta property="og:title" content="区块链技术复习">
+<meta property="og:url" content="http://yoursite.com/2019/10/10/区块链技术复习笔记/index.html">
+<meta property="og:site_name" content="Mortal">
+<meta property="og:description" content="ustc_sse区块链课程，不定期更新">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2019/10/10/区块链技术复习笔记/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%5Cv2-109d2371c4ef8095fb10f628a68dc29b_hd.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/10/区块链技术复习笔记/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%5Cv2-ad361062a640ff9911d84d71517988fa_hd.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/10/区块链技术复习笔记/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%5Cf3d3572c11dfa9ecf6f6c0dd68d0f703908fc124.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/10/区块链技术复习笔记/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%5Cv2-63661e68b364d5906071c53a2b781239_hd.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/10/区块链技术复习笔记/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%5Cexcmple.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/10/区块链技术复习笔记/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%5Cprove1.png">
+<meta property="og:updated_time" content="2019-10-10T11:55:37.344Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="区块链技术复习">
+<meta name="twitter:description" content="ustc_sse区块链课程，不定期更新">
+<meta name="twitter:image" content="http://yoursite.com/2019/10/10/区块链技术复习笔记/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%5Cv2-109d2371c4ef8095fb10f628a68dc29b_hd.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/10/10/区块链技术复习笔记/">
+
+
+
+
+
+  <title>区块链技术复习 | Mortal</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mortal</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">王哲的个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/10/区块链技术复习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mortal">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mortal">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">区块链技术复习</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-10T11:09:00+08:00">
+                2019-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  ustc_sse区块链课程，不定期更新
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="一些引子"><a href="#一些引子" class="headerlink" title="一些引子"></a>一些引子</h1><h2 id="为什么出现了区块链，什么是区块链，与比特币的关系，需要关心的问题是什么"><a href="#为什么出现了区块链，什么是区块链，与比特币的关系，需要关心的问题是什么" class="headerlink" title="为什么出现了区块链，什么是区块链，与比特币的关系，需要关心的问题是什么"></a>为什么出现了区块链，什么是区块链，与比特币的关系，需要关心的问题是什么</h2><p>我们当前的货币系统导致了很多的问题，比如金融危机等等，造成这种问题的本质原因就是由于当前的货币系统是中心化的，区块链的目的就是创造出一种去中心化的货币系统来应对这些问题。所谓的区块链，本质上是一个分布式账本。比特币是依靠区块链技术而产生的一种货币。需要关心的问题有：  </p>
+<ol>
+<li>如何生成货币：谁能获得这个货币，获得货币不能太容易，正如必须工作才能获得报酬；</li>
+<li>如何将货币与所有者关联起来：现下的环境中，信用卡实名制，现金匿名；</li>
+<li>如何保护交易双方：保护卖家，防止买家对支付进行回滚；保护买家，卖家对交易不能抵赖；</li>
+<li>如何防止双花（double-spending）：对于现金不存在双重支付的问题，花出去了，就没有了；如果是基于信用的，有可能重花；现实中，人们不是防止重花而是在检测出重花之后加以重罚。数字货币是完全虚拟的货币，也即一串数字就代表一块币，这个数字可以被无穷次的利用，怎么样能够防止双花呢？</li>
+<li>如何记账：每一笔交易有据可查，同时保护用户的隐私；<br>其实在历史上，出现过不少电子货币，比如eCash,HashCash,B-money以及这门课的主角比特币。<h1 id="区块链技术应用到的密码学技术"><a href="#区块链技术应用到的密码学技术" class="headerlink" title="区块链技术应用到的密码学技术"></a>区块链技术应用到的密码学技术</h1><h2 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h2><h3 id="hash的特点"><a href="#hash的特点" class="headerlink" title="hash的特点"></a>hash的特点</h3>哈希具有如下几个重要特点</li>
+<li>它是确定性的，因此相同的消息总是产生相同的散列</li>
+<li>可以快速计算任何给定消息的哈希值</li>
+<li>除了通过尝试所有可能的消息之外，从其散列值生成消息是不可行的</li>
+<li>对消息进行小的更改便能引起哈希值的巨大改变，以使新哈希值看起来与旧哈希值不相关(雪崩效应)</li>
+<li>找到具有相同散列值的两个不同消息是不可行的<br>这里着重解释下第五点，也就是抗冲突性：当两个输入产生同一个输出，就发生了冲突。这里的抗冲突不是说肯定不会冲突，只要定义域大于值域，肯定会有冲突的。哈希函数的抗冲突指的是，虽然冲突就在那里，那就是找不到——或者说在可接受的时间内找不到。抗冲突的一个主要应用是信息摘要（message digest）。对于抗冲突性的哈希函数而言，如果两个输入x和y不同，那么就可以认为H(x)和H(y)不同——否则的话，就违反了抗冲突性。这个性质就可以做信息摘要。在第三点中不可行的原因是因为<h3 id="SHA256算法"><a href="#SHA256算法" class="headerlink" title="SHA256算法"></a>SHA256算法</h3>对于任意长度的消息，SHA256都产生256bit长的哈希值，也即32字节.<br>算法流程的框图如下,<strong>注意，一轮计算64次</strong>  </li>
+</ol>
+<p><img src="/2019/10/10/区块链技术复习笔记/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%5Cv2-109d2371c4ef8095fb10f628a68dc29b_hd.jpg" alt><br><img src="/2019/10/10/区块链技术复习笔记/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%5Cv2-ad361062a640ff9911d84d71517988fa_hd.jpg" alt>   </p>
+<p>这里A～H共有8个，初始值分别是<br>h0 := 0x6a09e667<br>h1 := 0xbb67ae85<br>h2 := 0x3c6ef372<br>h3 := 0xa54ff53a<br>h4 := 0x510e527f<br>h5 := 0x9b05688c<br>h6 := 0x1f83d9ab<br>h7 := 0x5be0cd19<br>分别是8个16进制数，所以总共有256位，这个就叫做初始向量（IV）。这8个数是前8个素数取平方根，前32位小数。最终生成的哈希值也是这么长，所以，每一轮的计算就是如上图所示，更新这8个值。<br>在上图中可以看到，除了A～H外，有两个输入，分别是$wt$和$kt$,也即每一轮中有64个$w$，以及64个$k$。每个$w$长度为32bit，也即4个字节。64个$k$来自于哈希函数的输入，也即，对于输入，不论长短，长的就分成每512bit一个块（64个字节），短的补足512bit。这64个字节构成了前16个$w$，后面的48个$w$通过前面的16个生成。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i from <span class="number">16</span> to <span class="number">63</span></span><br><span class="line">        s0 := (w[i<span class="number">-15</span>] rightrotate <span class="number">7</span>) xor (w[i<span class="number">-15</span>] rightrotate <span class="number">18</span>) xor (w[i<span class="number">-15</span>] rightshift <span class="number">3</span>)</span><br><span class="line">        s1 := (w[i<span class="number">-2</span>] rightrotate <span class="number">17</span>) xor (w[i<span class="number">-2</span>] rightrotate <span class="number">19</span>) xor (w[i<span class="number">-2</span>] rightshift <span class="number">10</span>)</span><br><span class="line">        w[i] := w[i<span class="number">-16</span>] + s0 + w[i<span class="number">-7</span>] + s1</span><br></pre></td></tr></table></figure>
+
+<p>关于短的输入如何补足也有一些细节，在输入末尾进行填充，使输入长度在对512取模以后的余数是448。填充的具体过程：先补第一个比特为1，<strong>然后都补0，直到长度满足对512取模后余数是448(其实这句话指示了补多少0)</strong>。为什么余数是448呢?因为，还有需要有64位的数据表示原始输入的长度，加上这64bit的长度信息448+64=512，刚好512位。</p>
+<h3 id="扩展长度攻击"><a href="#扩展长度攻击" class="headerlink" title="扩展长度攻击"></a>扩展长度攻击</h3><p><strong>先挖个坑，有空填上，，</strong></p>
+<h3 id="DH算法"><a href="#DH算法" class="headerlink" title="DH算法"></a>DH算法</h3><p>先介绍一些数论的基本知识：</p>
+<ol>
+<li>原根：如果a是素数p的一个原根，那么数值：$a<del>mod</del>p$，$a^2<del>mod</del>p$，…，$a^{(p-1)}<del>mod</del>p$是各不相同的整数，且以某种排列方式组成了从1到p-1的所有整数。</li>
+<li>欧拉函数：在数论，对正整数n，欧拉函数是小于或等于n的正整数中与n互质的数的数目（因此φ(1)=1）。正整数m的原根的个数为$φ(φ(m))$  </li>
+</ol>
+<p><img src="/2019/10/10/区块链技术复习笔记/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%5Cf3d3572c11dfa9ecf6f6c0dd68d0f703908fc124.png" alt>  </p>
+<ol start="3">
+<li>欧拉定理:见笔记，这块公式太多了</li>
+<li>费马小定理：见笔记，这块公式太多了 </li>
+</ol>
+<p>DH算法原理图<br><img src="/2019/10/10/区块链技术复习笔记/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%5Cv2-63661e68b364d5906071c53a2b781239_hd.jpg" alt>  </p>
+<p>在这个过程中，攻击者Eve可以一直监听网络，并且获得Alice和Bob在网络上交换的所有信息。也即，可以获得黄色、橙褐色、淡蓝色这些信息。阻止Eve获得最终的黄褐色的是Alice和Bob分别挑选的秘密颜色，橙色和青色。也即，需要能够证明，即使Eve得到了黄色和橙褐色，Eve也不能推导出Alice的秘密颜色。<strong>由此我们可以看出，攻击者最后想得到的是黄褐色内容。而获得黄褐色就必须知道秘密颜色，这个是很难的</strong></p>
+<p><strong>这里需要特别关注的是，DH算法并不是让发送者加密的消息在网上传播到接收者后解密获得明文，它的目的是使双方获得一个共同的密钥</strong></p>
+<p>在数学上，DH算法的有效性依赖于计算离散对数的难度。也即，当已知大素数p和它的一个原根（primitive root） g，对于给定的b ，要计算指数i ，是非常困难的（暴力破解），而给定i ，计算b却很容易。 这里使用原根的目的是为了增加破解难度<br>下面是一个具体的例子，来自老师的知乎截图<br><img src="/2019/10/10/区块链技术复习笔记/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%5Cexcmple.jpg" alt>    </p>
+<p>另外，还需要注意一点，DH算法并没有对双方身份进行验证。当Alice和Bob希望进行通信时，Eve可以很容易地向Alice冒充自己是Bob，以及向Bob冒充自己是Alice，然后分别和Alice和Bob建立公共的对称密钥。然后，Alice到Bob的通信都会通过Eve先使用自己与Alice建立的密钥先解密，获得明文信息之后，再用Eve与Bob建立的密钥加密，传给Bob。Bob到Alice的通信亦然。这样，Alice和Bob会以为自己和对方的通信是加密的，从而是安全的，但是它们的通信会经过Eve加解密一遍。Eve在Alice和Bob之间，拦截他们的通信，并且维持通信，就称为中间人攻击。</p>
+<h3 id="RSA算法"><a href="#RSA算法" class="headerlink" title="RSA算法"></a>RSA算法</h3><p>预备数论知识：  </p>
+<ol>
+<li>gcd算法：欧几里得算法，gcd(a,b)可以计算a，b的最大公约数</li>
+<li>ex_gcd算法：扩展欧几里得算法，可以计算出ax+by=gcd(a,b)中的x和y  </li>
+</ol>
+<p>我们先来叙述一下RSA算法的流程：  </p>
+<ol>
+<li>挑选两个大素数p和q</li>
+<li>计算N=p*q</li>
+<li>计算φ(N)=(p-1)*(q-1)</li>
+<li>选择一个与φ(N)互素的数e，然后计算e对φ(N)的模逆元，即ed=1(modφ(N)),根据模运算的性质可以推出ed+φ(N)y=1,这个可以用ex_gcd算法求出。</li>
+<li>现在我们获得了公钥(N,e)和私钥(N,d)</li>
+<li>m为我们要发送的信息,加密过程为m^e mod N=C,解密过程为C^d mod N=m.  也就是公钥加密，私钥解密。  </li>
+</ol>
+<p>正确性证明：<br><img src="/2019/10/10/区块链技术复习笔记/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%5Cprove1.png" alt><br>为什么安全？<br>要想解密必须获得私钥，已知了d求e，我们需要知道φ(N)。也就是要知道(p-1)(q-1)，也就是要知道pq，我们已知一个很大的N的情况下，进行质因子分解出pq是很难的。这也就是rsa算法安全的基础。</p>
+<h3 id="椭圆曲线加密算法"><a href="#椭圆曲线加密算法" class="headerlink" title="椭圆曲线加密算法"></a>椭圆曲线加密算法</h3><p>这个算法有点难没听懂(老师说她自己也没太懂，，)原理就不写了，不过需要注意的是比特币的加密算法貌似用的是这个</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/区块链技术/" rel="tag"># 区块链技术</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/07/程序设计与计算机系统第二次作业/" rel="next" title="程序设计与计算机系统第二次作业">
+                <i class="fa fa-chevron-left"></i> 程序设计与计算机系统第二次作业
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Mortal</p>
+              <p class="site-description motion-element" itemprop="description">终日钦钦，常在战场</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一些引子"><span class="nav-number">1.</span> <span class="nav-text">一些引子</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么出现了区块链，什么是区块链，与比特币的关系，需要关心的问题是什么"><span class="nav-number">1.1.</span> <span class="nav-text">为什么出现了区块链，什么是区块链，与比特币的关系，需要关心的问题是什么</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#区块链技术应用到的密码学技术"><span class="nav-number">2.</span> <span class="nav-text">区块链技术应用到的密码学技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#hash"><span class="nav-number">2.1.</span> <span class="nav-text">hash</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hash的特点"><span class="nav-number">2.1.1.</span> <span class="nav-text">hash的特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SHA256算法"><span class="nav-number">2.1.2.</span> <span class="nav-text">SHA256算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展长度攻击"><span class="nav-number">2.1.3.</span> <span class="nav-text">扩展长度攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DH算法"><span class="nav-number">2.1.4.</span> <span class="nav-text">DH算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RSA算法"><span class="nav-number">2.1.5.</span> <span class="nav-text">RSA算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#椭圆曲线加密算法"><span class="nav-number">2.1.6.</span> <span class="nav-text">椭圆曲线加密算法</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mortal</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
