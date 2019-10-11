@@ -93,7 +93,12 @@
 <meta property="og:image" content="http://yoursite.com/2019/10/10/区块链技术复习笔记/v2-63661e68b364d5906071c53a2b781239_hd.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/10/10/区块链技术复习笔记/excmple.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/10/10/区块链技术复习笔记/prove1.png">
-<meta property="og:updated_time" content="2019-10-10T12:05:10.721Z">
+<meta property="og:image" content="http://yoursite.com/2019/10/10/区块链技术复习笔记/v2-11e5f28ac4b8896e71ac589097819c89_hd.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/10/区块链技术复习笔记/141654y9s493143hk3y919.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/10/区块链技术复习笔记/v2-12001568aacaca5d5b715c3e567eebc1_hd.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/10/区块链技术复习笔记/v2-16f54491286c76a29738de82e2b76212_hd.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/10/区块链技术复习笔记/v2-19bdd0b05641d9b72132fbadaffb2182_hd.jpg">
+<meta property="og:updated_time" content="2019-10-11T06:09:31.119Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="区块链技术复习笔记">
 <meta name="twitter:description" content="ustc_sse区块链课程，不定期更新">
@@ -330,7 +335,7 @@
 
 <p>关于短的输入如何补足也有一些细节，在输入末尾进行填充，使输入长度在对512取模以后的余数是448。填充的具体过程：先补第一个比特为1，<strong>然后都补0，直到长度满足对512取模后余数是448(其实这句话指示了补多少0)</strong>。为什么余数是448呢?因为，还有需要有64位的数据表示原始输入的长度，加上这64bit的长度信息448+64=512，刚好512位。</p>
 <h3 id="扩展长度攻击"><a href="#扩展长度攻击" class="headerlink" title="扩展长度攻击"></a>扩展长度攻击</h3><p><strong>先挖个坑，有空填上，，</strong></p>
-<h3 id="DH算法"><a href="#DH算法" class="headerlink" title="DH算法"></a>DH算法</h3><p>先介绍一些数论的基本知识：</p>
+<h2 id="DH算法"><a href="#DH算法" class="headerlink" title="DH算法"></a>DH算法</h2><p>先介绍一些数论的基本知识：</p>
 <ol>
 <li>原根：如果a是素数p的一个原根，那么数值：$a<del>mod</del>p$，$a^2<del>mod</del>p$，…，$a^{(p-1)}<del>mod</del>p$是各不相同的整数，且以某种排列方式组成了从1到p-1的所有整数。</li>
 <li>欧拉函数：在数论，对正整数n，欧拉函数是小于或等于n的正整数中与n互质的数的数目（因此φ(1)=1）。正整数m的原根的个数为$φ(φ(m))$  </li>
@@ -345,7 +350,7 @@
 <p><strong>这里需要特别关注的是，DH算法并不是让发送者加密的消息在网上传播到接收者后解密获得明文，它的目的是使双方获得一个共同的密钥</strong></p>
 <p>在数学上，DH算法的有效性依赖于计算离散对数的难度。也即，当已知大素数p和它的一个原根（primitive root） g，对于给定的b ，要计算指数i ，是非常困难的（暴力破解），而给定i ，计算b却很容易。 这里使用原根的目的是为了增加破解难度<br>下面是一个具体的例子，来自老师的知乎截图<br><img src="/2019/10/10/区块链技术复习笔记/excmple.jpg" alt>    </p>
 <p>另外，还需要注意一点，DH算法并没有对双方身份进行验证。当Alice和Bob希望进行通信时，Eve可以很容易地向Alice冒充自己是Bob，以及向Bob冒充自己是Alice，然后分别和Alice和Bob建立公共的对称密钥。然后，Alice到Bob的通信都会通过Eve先使用自己与Alice建立的密钥先解密，获得明文信息之后，再用Eve与Bob建立的密钥加密，传给Bob。Bob到Alice的通信亦然。这样，Alice和Bob会以为自己和对方的通信是加密的，从而是安全的，但是它们的通信会经过Eve加解密一遍。Eve在Alice和Bob之间，拦截他们的通信，并且维持通信，就称为中间人攻击。</p>
-<h3 id="RSA算法"><a href="#RSA算法" class="headerlink" title="RSA算法"></a>RSA算法</h3><p>预备数论知识：  </p>
+<h2 id="RSA算法"><a href="#RSA算法" class="headerlink" title="RSA算法"></a>RSA算法</h2><p>预备数论知识：  </p>
 <ol>
 <li>gcd算法：欧几里得算法，gcd(a,b)可以计算a，b的最大公约数</li>
 <li>ex_gcd算法：扩展欧几里得算法，可以计算出ax+by=gcd(a,b)中的x和y  </li>
@@ -360,7 +365,36 @@
 <li>m为我们要发送的信息,加密过程为m^e mod N=C,解密过程为C^d mod N=m.  也就是公钥加密，私钥解密。  </li>
 </ol>
 <p>正确性证明：<br><img src="/2019/10/10/区块链技术复习笔记/prove1.png" alt><br>为什么安全？<br>要想解密必须获得私钥，已知了d求e，我们需要知道φ(N)。也就是要知道(p-1)(q-1)，也就是要知道pq，我们已知一个很大的N的情况下，进行质因子分解出pq是很难的。这也就是rsa算法安全的基础。</p>
-<h3 id="椭圆曲线加密算法"><a href="#椭圆曲线加密算法" class="headerlink" title="椭圆曲线加密算法"></a>椭圆曲线加密算法</h3><p>这个算法有点难没听懂(老师说她自己也没太懂，，)原理就不写了，不过需要注意的是比特币的加密算法貌似用的是这个</p>
+<h2 id="椭圆曲线加密算法"><a href="#椭圆曲线加密算法" class="headerlink" title="椭圆曲线加密算法"></a>椭圆曲线加密算法</h2><p>这个算法有点难没听懂(老师说她自己也没太懂，，)原理就不写了，不过需要注意的是比特币的加密算法貌似用的是这个</p>
+<h1 id="去中心化"><a href="#去中心化" class="headerlink" title="去中心化"></a>去中心化</h1><h2 id="拜占庭问题及其解决方案"><a href="#拜占庭问题及其解决方案" class="headerlink" title="拜占庭问题及其解决方案"></a>拜占庭问题及其解决方案</h2><p>区块链技术中，最急需解决的就是分布式系统中的一致性问题。所谓的一致性是指对于系统中的多个服务节点，给定一系列操作，在协议（往往通过某种共识算法）保障下，试图使得他们对处理结果达成某种程度的一致。而缺少中心节点的统一管理，在分布式的系统中达成一致是一件不容易的事情。有一个经典的拜占庭问题来描述这个一致性问题。  </p>
+<p>拜占庭帝国想要进攻一个城市，为此派出了10个将军率领10支军队，这个城市足以抵御5支常规拜占庭军队的同时袭击。这10支军队不能集合在一起单点突破，必须在分开的包围状态下同时攻击，至少6支军队同时袭击才能攻下敌国。10支军队分散在敌国的四周，依靠通信兵相互通信来协商进攻意向及进攻时间。这里的问题是，对应于有的主机坏掉了，将军中可能会有叛徒，忠诚的将军希望达成命令的一致（比如约定某个时间一起进攻），但背叛的将军会通过发送错误的消息阻挠忠诚的将军达成命令上的一致。在这种状态下，拜占庭将军们能否找到一种分布式的协议来让他们能够远程协商，从而赢取战斗？  </p>
+<p>目前研究得出的结论是如果不忠诚的将军数量大于1/3，拜占庭问题不可解。<br>介绍一下PBFT(拜占庭容错算法)，在不忠诚将军数量少于1/3时使拜占庭问题可解。这个算法的核心思想是：对于每一个收到命令的将军，都要去询问其他人，他们收到的命令是什么。</p>
+<h2 id="分布式共识"><a href="#分布式共识" class="headerlink" title="分布式共识"></a>分布式共识</h2><p>有n个节点，每个节点都有输入值。有一些节点出故障或者是恶意的。分布式共识协议的特点是：</p>
+<ol>
+<li>必须能够使得所有的诚实节点就输入值达成一致</li>
+<li>该最终一致的值是由诚实节点产生的<h2 id="FLP不可能原理"><a href="#FLP不可能原理" class="headerlink" title="FLP不可能原理"></a>FLP不可能原理</h2>在网络可靠，但允许节点失效（即便只有一个）的最小化异步模型系统中，不存在一个可以解决一致性问题的确定性共识算法<h2 id="比特币系统如何实现的去中心化"><a href="#比特币系统如何实现的去中心化" class="headerlink" title="比特币系统如何实现的去中心化"></a>比特币系统如何实现的去中心化</h2>比特币系统没有采用传统的方法解决一致性问题，他的解决方法有两个特殊之处：</li>
+<li>引入了激励机制。因为比特币本身就是一种货币，所以参与者有强烈的意愿能获得这个奖励。也就是说，维持整个系统正常工作才符合大多数人的利益。</li>
+<li>比特币的随机性。比特币网络中的共识并不是一下子就确定的，在实际中，差不多是一个小时之后，基本可以认为对一个区块或者一笔交易进行了确认。但是，即使在这个时候，也还不能确认100%。而是，随着时间的流逝，确认性会逐渐增强。<br>下面分别解释这两点。所谓的激励机制是指，每一个在区块链上成功记账的<strong>矿工</strong>，都会获得奖励，这个奖励包括<strong>系统本身给定的比特币奖励(奖励每四年减少一倍)，以及交易的时候付的手续费</strong>这里指的矿工，都具有很强大的算力，为什么要求能够拥有记账资格的节点必须拥有强大的算力呢？<strong>这是因为为了防止女巫攻击，如果攻击者注册了大量的公私钥对，进行某些恶意行为，比如故意漏掉某人的交易记录使其无法完成交易，假如这些恶意节点都拥有记账的权力，就很容易伪造出具有恶意行为的最长链，然而攻击者不可能提供数量巨大的具有强大算力的公私钥对，因为成本太高</strong>  算出那个数学难题的矿工才能记账，这个被称为<strong>POW工作量机制证明</strong>，需要注意的是，这个数学难题的难度是可以调节的，因为假如题目难度始终那么难，随着报酬的减少，挖矿的人势必会越来越少。如果此时我们把难度降低，那么会有更多的节点有记账的能力，他们为了追求手续费，也会积极记账，以此维持区块链的正常运行。<br>比特币系统的具体记账流程如下：  </li>
+<li>向所有的节点广播新的交易。</li>
+<li>每个节点将新交易打包进区块(<strong>一个区块中有多条交易，不同矿工节点的区块内的交易记录可能不同</strong>)。</li>
+<li>每一轮中一个随机的节点(<strong>随机不太准确，应该是算力最强的节点</strong>)广播该区块。</li>
+<li>如果区块中所有的交易都是有效的<strong>如比特币没有重花，签名正确等</strong>(下节详解)，则其他节点接受这个区块； <strong>节点表示接受该区块的方式是在之后新创建的区块中包括这个块的哈希。</strong>一般10分钟出一个区块。<br>讨论下可能存在的安全隐患，偷比特币肯定是不可能的，因为有密码学基础在。  </li>
+</ol>
+<p><strong>至于双花问题，如果A同时向B,C发消息，打算用一份钱买两份东西，那么最终区块链上记录的到底是A向B付款还是A向C付款是不确定的，可能区块链上T1时刻最长链中包含A与B的交易，可是T2时刻最长链中却只包含了A与C的交易了。所以卖家一般等6个区块(一个小时)如果一小时后最长链中包含自己的交易记录就发货。因为6个区块以后再想翻盘就很难了，因为获得记账的权利是很难的。</strong><br>如果矿工A有意漏掉B的交易信息，那也没问题，因为不可能所有的矿工都看B不爽故意漏掉B的交易信息。</p>
+<h2 id="51-攻击"><a href="#51-攻击" class="headerlink" title="51%攻击"></a>51%攻击</h2><p>以上讨论的都是没有节点获得51%算力的情况，不过一旦有人获得了51%的算力，那么也就意味着他掌握着区块链最长链的走向，他也就能为所欲为了，不过此时区块链将不被人信任，它的价值将一落千丈。</p>
+<h2 id="分叉币"><a href="#分叉币" class="headerlink" title="分叉币"></a>分叉币</h2><p>老师上课最后提了一嘴这个，急着下课也没太认真听，好像是有人无法接受比特币交易速度太慢，然后搞出了个这么个玩意，不过这玩意应该违背了区块链技术本身的思想，说到底还是资本在作怪。</p>
+<h1 id="比特币机制"><a href="#比特币机制" class="headerlink" title="比特币机制"></a>比特币机制</h1><p>比特币之间的交易记录长这样  </p>
+<p><img src="/2019/10/10/区块链技术复习笔记/v2-11e5f28ac4b8896e71ac589097819c89_hd.jpg" alt></p>
+<p><img src="/2019/10/10/区块链技术复习笔记/141654y9s493143hk3y919.png" alt></p>
+<p>第一幅图中一共有四笔交易。要注意的是，<strong>每个区块的第一笔交易都是给自己的账户新增若干比特币作为记账奖励</strong>，并且<strong>每个input都需要指明是哪笔交易，这个是通过第二张图的交易哈希连接起来的</strong>，更加需要特别注意的是<strong>input中必须有scriptsig，output中必须有scriptpubkey</strong>，在具体的交易中的结构如下图<strong>这是单笔交易的结构图</strong>  </p>
+<p><img src="/2019/10/10/区块链技术复习笔记/v2-12001568aacaca5d5b715c3e567eebc1_hd.jpg" alt></p>
+<p>其中，metadata成为元数据，包含交易的基本信息，我个人认为最重要的就是它包含了<strong>这笔交易的哈希值</strong><br>其实scripsig和scriptpubkey都带有脚本这个关键字，其原因就是这两个值是用来验证交易的有效性的比特币脚本。什么是比特币脚本？<strong>比特币脚本是基于栈的语言。栈允许两类操作：入栈和出栈。。脚本语言通过从左至右地处理每个项目的方式执行脚本。数字指令直接入栈，操作指令向堆栈推送（或移除）一个或多个参数，对它们进行处理，或者可以将结果入栈。</strong>  </p>
+<p>下面给出一张图，看一下scriptsig和scriptpubkey都长啥样  </p>
+<p><img src="/2019/10/10/区块链技术复习笔记/v2-16f54491286c76a29738de82e2b76212_hd.jpg" alt></p>
+<p>图中，上边的是scriptsig，下边的是scriptpubkey $\color{red}{pubkeyhash?来自对应交易output的哈希}$<br>验证的流程如下，首先将图中的脚本从上到下拼接成一条语句。然后执行这条个脚本，如图</p>
+<p><img src="/2019/10/10/区块链技术复习笔记/v2-19bdd0b05641d9b72132fbadaffb2182_hd.jpg" alt></p>
+<p>思考一下，<strong>这里执行<op_dup>&nbsp;&nbsp;OP_HASH160&nbsp;&nbsp;&lt;pubKeyHash?&gt;&nbsp;&nbsp;<op_equalverify>的原因是什么？</op_equalverify></op_dup></strong><br><strong>考虑现在A想偷花B的比特币，当他新创建一笔交易时，必须得拿上一笔B的output作为这笔新交易的input的基础。这就要求A必须提供正确的公钥和签名。这里签名解密后的内容就是这次的恶意交易的详细信息。执行这里执行<op_dup>&nbsp;&nbsp;OP_HASH160&nbsp;&nbsp;&lt;pubKeyHash?&gt;&nbsp;&nbsp;<op_equalverify>的原因是，验证A提供的公钥是B的公钥。如果不执行这些脚本，A可以提供自己的公钥以及用自己密钥签名的交易信息。反之，执行以后，如果通过了验证则证明A用的是B的公钥，假如签名部分是拿A的私钥加密的，此时就不能解密了。</op_equalverify></op_dup></strong></p>
+<p>最后老师课堂上留了个问题，给出我的解答：<br>在引入比特币地址（公钥的哈希）之前，早期的比特币版本支持p2pk形式的交易，也即pay-to-public-key。这种交易的缺点是需要提前知道公钥，而且针对攻击的保护性较差【如果一个地址只用一次，那么P2PKH的话没有人提前知道公钥】。问题是：这种交易的scriptSig和scriptPubKey应该怎么写？<br>scriptSig :<sig><pubkey><br>scriptpubkey:<pubkey><op_equalverify><op_chiecksig></op_chiecksig></op_equalverify></pubkey></pubkey></sig></p>
 
       
     </div>
@@ -522,7 +556,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一些引子"><span class="nav-number">1.</span> <span class="nav-text">一些引子</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么出现了区块链，什么是区块链，与比特币的关系，需要关心的问题是什么"><span class="nav-number">1.1.</span> <span class="nav-text">为什么出现了区块链，什么是区块链，与比特币的关系，需要关心的问题是什么</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#区块链技术应用到的密码学技术"><span class="nav-number">2.</span> <span class="nav-text">区块链技术应用到的密码学技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#hash"><span class="nav-number">2.1.</span> <span class="nav-text">hash</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hash的特点"><span class="nav-number">2.1.1.</span> <span class="nav-text">hash的特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SHA256算法"><span class="nav-number">2.1.2.</span> <span class="nav-text">SHA256算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展长度攻击"><span class="nav-number">2.1.3.</span> <span class="nav-text">扩展长度攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DH算法"><span class="nav-number">2.1.4.</span> <span class="nav-text">DH算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RSA算法"><span class="nav-number">2.1.5.</span> <span class="nav-text">RSA算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#椭圆曲线加密算法"><span class="nav-number">2.1.6.</span> <span class="nav-text">椭圆曲线加密算法</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一些引子"><span class="nav-number">1.</span> <span class="nav-text">一些引子</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么出现了区块链，什么是区块链，与比特币的关系，需要关心的问题是什么"><span class="nav-number">1.1.</span> <span class="nav-text">为什么出现了区块链，什么是区块链，与比特币的关系，需要关心的问题是什么</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#区块链技术应用到的密码学技术"><span class="nav-number">2.</span> <span class="nav-text">区块链技术应用到的密码学技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#hash"><span class="nav-number">2.1.</span> <span class="nav-text">hash</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hash的特点"><span class="nav-number">2.1.1.</span> <span class="nav-text">hash的特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SHA256算法"><span class="nav-number">2.1.2.</span> <span class="nav-text">SHA256算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展长度攻击"><span class="nav-number">2.1.3.</span> <span class="nav-text">扩展长度攻击</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DH算法"><span class="nav-number">2.2.</span> <span class="nav-text">DH算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RSA算法"><span class="nav-number">2.3.</span> <span class="nav-text">RSA算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#椭圆曲线加密算法"><span class="nav-number">2.4.</span> <span class="nav-text">椭圆曲线加密算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#去中心化"><span class="nav-number">3.</span> <span class="nav-text">去中心化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#拜占庭问题及其解决方案"><span class="nav-number">3.1.</span> <span class="nav-text">拜占庭问题及其解决方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分布式共识"><span class="nav-number">3.2.</span> <span class="nav-text">分布式共识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FLP不可能原理"><span class="nav-number">3.3.</span> <span class="nav-text">FLP不可能原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#比特币系统如何实现的去中心化"><span class="nav-number">3.4.</span> <span class="nav-text">比特币系统如何实现的去中心化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#51-攻击"><span class="nav-number">3.5.</span> <span class="nav-text">51%攻击</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分叉币"><span class="nav-number">3.6.</span> <span class="nav-text">分叉币</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#比特币机制"><span class="nav-number">4.</span> <span class="nav-text">比特币机制</span></a></li></ol></div>
             
 
           </div>
