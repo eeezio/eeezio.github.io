@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="算法分析的几种不同渐进符号，面向输入数据规模的算法分析方法">
+<meta name="description" content="算法分析的几种不同渐进符号，递推公式的算法分析，面向数据规模的算法分析，面向操作规模的算法分析方法">
 <meta name="keywords" content="算法分析">
 <meta property="og:type" content="article">
-<meta property="og:title" content="算法分析(1)">
+<meta property="og:title" content="算法分析">
 <meta property="og:url" content="http://yoursite.com/2019/12/24/算法分析/index.html">
 <meta property="og:site_name" content="Mortal">
-<meta property="og:description" content="算法分析的几种不同渐进符号，面向输入数据规模的算法分析方法">
+<meta property="og:description" content="算法分析的几种不同渐进符号，递推公式的算法分析，面向数据规模的算法分析，面向操作规模的算法分析方法">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/2019/12/24/算法分析/1.jpg">
-<meta property="og:updated_time" content="2020-02-18T03:52:42.483Z">
+<meta property="og:updated_time" content="2020-02-18T11:30:01.871Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="算法分析(1)">
-<meta name="twitter:description" content="算法分析的几种不同渐进符号，面向输入数据规模的算法分析方法">
+<meta name="twitter:title" content="算法分析">
+<meta name="twitter:description" content="算法分析的几种不同渐进符号，递推公式的算法分析，面向数据规模的算法分析，面向操作规模的算法分析方法">
 <meta name="twitter:image" content="http://yoursite.com/2019/12/24/算法分析/1.jpg">
 
 
@@ -128,7 +128,7 @@
 
 
 
-  <title>算法分析(1) | Mortal</title>
+  <title>算法分析 | Mortal</title>
   
 
 
@@ -252,7 +252,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">算法分析(1)</h1>
+          <h1 class="post-title" itemprop="name headline">算法分析</h1>
         
 
         <div class="post-meta">
@@ -289,7 +289,7 @@
 
           
               <div class="post-description">
-                  算法分析的几种不同渐进符号，面向输入数据规模的算法分析方法
+                  算法分析的几种不同渐进符号，递推公式的算法分析，面向数据规模的算法分析，面向操作规模的算法分析方法
               </div>
           
 
@@ -306,8 +306,9 @@
       
 
       
-        <h1 id="渐进记号"><a href="#渐进记号" class="headerlink" title="渐进记号"></a>渐进记号</h1><p>我们都知道所谓的大$O$表示法，也就是渐进上界。但是，除此之外还有其他的渐进符号表示方法，简要介绍一下  </p>
-<p>对于$f(n)=\Theta(g(n))$，我们给出如下定义：<br>$f(n)$:存在大于$0$的常数$C1,C2$和$n0$，使得对于所有的$n&gt;=n0$，都有$0&lt;=C1g(n)&lt;=f(n)&lt;=C2g(n)$,值得注意的是，<strong>只需要存在某个$C1$、$C2&gt;0$即可，不要求对任意的$C1$、$C2$</strong>。在这里我愿意将其称为渐进确界  </p>
+        <p>由于普通的顺序执行或者简单嵌套循环类的算法分析是很浅显的，所以本文不做探讨。</p>
+<h1 id="渐进记号"><a href="#渐进记号" class="headerlink" title="渐进记号"></a>渐进记号</h1><p>我们都知道所谓的大$O$表示法，也就是渐进上界。但是，除此之外还有其他的渐进符号表示方法，简要介绍一下  </p>
+<p>对于$f(n)=\Theta(g(n))$，我们给出如下定义：<br>$f(n)$:存在大于$0$的常数$C_1,C_2$和$n_0$，使得对于所有的$n&gt;=n_0$，都有$0&lt;=C_1g(n)&lt;=f(n)&lt;=C_2g(n)$,值得注意的是，<strong>只需要存在某个$C_1$、$C_2&gt;0$即可，不要求对任意的$C_1$、$C_2$</strong>。在这里我愿意将其称为渐进确界  </p>
 <p>对于$\Omega(g(n))=f(n)$,我们给出如下定义:<br>存在正常数$C$和$n0$，使得对于所有的$n&gt;=n0$，都有$0&lt;=Cg(n)&lt;=f(n)$  那么很显然，这是渐进下界。</p>
 <p>对于这三种不同的渐进符号，存在着如下的关系，道理很浅显，和微积分中极限理论的夹逼定理如出一辙:</p>
 <blockquote>
@@ -318,7 +319,18 @@
 <blockquote>
 <p>对于非负递归函数$T(n)=aT(n/b)+f(n)$，其中$a&gt;=1$，$b&gt;1$且为常数，$f(n)$为渐进函数，则$T(n)$有如下三种渐进界限：<br>$if\ \ \ \ f(n)=O(n^{log_ba-\varepsilon})$,常数$\varepsilon&gt;0,then\ \ \ \ T(n)=\Theta(n^{log_ba})$<br>$if\ \ \ \ f(n)=\Theta(n^{log_ba}),then\ \ \ \ T(n)=\Theta(n^{log_ba}*logn)$<br>$if\ \ \ \ f(n)=\Omega(n^{log_ba+\varepsilon})$,常数$\varepsilon&gt;0$且$\exists$常数$c&lt;1$,$n$足够大时有$af(n/b)&lt;=cf(n),then\ \ \ \ T(n)=\Theta(f(n))$  </p>
 </blockquote>
-<p>主定理的使用也是有着注意事项的，那就是不能落入主定里的”间隙”。请看下题。<br>$T(n)=2T(n/2)+nlogn$<br>你可能认为会选择主定理的第三种情况来进行求解，但实则不然。因为$nlogn$并不多项式大于$n$.这一点我们可以通过微积分的极限理论来求得。有$\lim_{n \rightarrow \infty}{\frac{n^{1+\varepsilon}}{nlogn}}=0$。这就是所谓的主定理的”间隙”.</p>
+<p>主定理的使用也是有着注意事项的，那就是不能落入主定里的”间隙”。请看下题。<br>$T(n)=2T(n/2)+nlogn$<br>你可能认为会选择主定理的第三种情况来进行求解，但实则不然。因为$nlogn$并不多项式大于$n$.这一点我们可以通过微积分的极限理论来求得。有$\lim_{n \rightarrow \infty}{\frac{n^{1+\varepsilon}}{nlogn}}=0$。这就是所谓的主定理的”间隙”.  </p>
+<h1 id="递推公式的算法分析"><a href="#递推公式的算法分析" class="headerlink" title="递推公式的算法分析"></a>递推公式的算法分析</h1><p>有的时候我们经常碰到形如$T(n)=T(n-1)+f(n)$的递推方程，比如说斐波那契额数列，那么这种递推式如何进行算法分析呢？其实本质上，这种方程就是我们高等数学中所讲的差分方程，离散数学中所讲的递推关系。<br>求解常系数线性齐次递推关系的基本方法是寻找形如$a_n=r^n$的解。其中$r$是常数。注意$a_n=r^n$是递推关系$a_n=c_1a_{n-1}+c_2a_{n-2}+…+c_ka_{n-k}$的解，当且仅当<br>$r^n=c_1r^{n-1}+c_2r^{n-2}+…+c_kr^{n-k}$<br>当等式两边同时除以$r^{n-k}$,我们得到等价的方程<br>$r^k-c_1r^{k-1}-…-c_k=0$<br>一般来说，我们很容易求解出这种形式的递推关系$af(n)=bf(n-1)+cf(n-2)$。我们将$ar^2-br-c=0$称作是<strong>特征方程</strong>，一般来说，这种通项都给出了$a_1,a_2$的初始值。我们来看下面一道例题，总结一下我们学过的知识。  </p>
+<p>求解$a_n=a_{n-1}+2a_{n-2}$<br>首先，我们可以求得特征方程$r^2-r-2=0$的解为$r_1=2,r_2=-1$，所以递推式的解形如$a_n=\alpha_12^n+\alpha_2(-1)^n$,之后我们可以将$a_1,a_2$代入即可求出最终结果。<br>当然，可能存在出现重根的情况。假设有$t$个不相等的根$r_1,r_2…r_t$,重数分别为$m_1,m_2…m_t$,满足$m_i&gt;=1,i=1,2…,t$,且$m_1+m_2+…+m_t=k$,那么递推关系的解为<br>$a_n=(\alpha_{1,0}+\alpha_{1,1}n+…+\alpha_{1,m_i-1}n^{m_{1,i-1}})r_1^n+(\alpha_{2,0}+\alpha_{2,1}n+…+\alpha_{2,m_i-1}n^{m_{2,i-1}})r_2^n+…+(\alpha_{t,0}+\alpha_{t,1}n+…+\alpha_{t,m_i-1}n^{m_{t,i-1}})r_t^n$  </p>
+<p>当然，面对非齐次的递推关系，道理和我们解线性非齐次方程式一样的。我们只要求出一个特解，然后与其对应其次关系的通解相加即可<br>对于非齐次递推方程的不同$f(n)$，我们很难找到一种通用的方法来寻求特解。这里介绍一种常见的即$f(n)=kn$的情形，我们将特解设为$p_n=cn+d$是很合理的  </p>
+<p>其实如果我们设计出了具有如上递推式形式的算法，个人认为也没什么分析的必要了。因为最终它的复杂度一定是指数级，是现代计算机无法承受的，不如去寻找更优的算法。</p>
+<h1 id="面向操作规模的算法分析-平摊分析"><a href="#面向操作规模的算法分析-平摊分析" class="headerlink" title="面向操作规模的算法分析(平摊分析)"></a>面向操作规模的算法分析(平摊分析)</h1><p>首先来介绍一下<strong>动态表</strong>，这是一种很有用的数据结构，在本人研究过的某种类lua语言的实现源码中，动态表可以用于诸如list等数据结构的内存管理。它的思想是这样的：  </p>
+<p>表扩张(table expansion)：发生在插入一个元素x时，此时表满没有空间存放x，所以将引起表扩张。表扩张的步骤为：①申请一块更大表②拷贝原表到新表中③释放原表④在新表中插入x  </p>
+<p>表收缩（table contraction)：发生在删除一个元素x后，表中元素个数小于某个设定值时，引起表收缩。表收缩步骤为：①删除元素x ②申请一块更小的表③拷贝原表到新表中④释放原表  </p>
+<p>你也看见了如果我们仅仅将动态表操作的最坏情况作为算法分析的依据，显然是不合理的。因为动态表最差情况的复杂度是$O(n)$,而在绝大多数情况下，我们都不会进行如此复杂的复制操作，大部分操作的复杂度是$O(1)$  </p>
+<p>这时候就需要面向操作规模的算法分析技术，这种技术有很多，比如记账法，聚合法，势函数法等，个人认为势函数法如果理解了，回过头来再看前面两种方法是非常显然的。所以本文介绍势函数法。  </p>
+<p>势函数法的挑战在于给出一个合适的势函数。我们令$\hat{c}$为操作的平摊代价，$c$为实际代价，并且存在如下关系$\hat{c}=c+\Phi(i)-\Phi(i-1)$,这里面的$\Phi(n)$我们称之为势函数。假设我们对动态表的初始状态令为$\Phi(0)$,那么经历$i$次操作后，我们的状态为$\Phi(i)$,如果此时$\Phi(i)-\Phi(0)&gt;=0$,我们则认为这个势函数是可以使用的。因为最终我们是希望摊还代价比实际代价有更高的上界，这样一来才足够保险。那么如果势函数满足上述性质的情况下有:<br>$\hat{c}=c+\Phi(i)-\Phi(i-1)+\Phi(i-1)…-\Phi(0)=c+\Phi(i)-\Phi(0)\Rightarrow\hat{c}-c&gt;=0$<br>那么对于动态表，我们来定义一下它的势函数。先引入填充因子$\alpha$的概念,即表中存储的数据项个数除以表的大小。<br>当$\alpha&gt;1/2$时，我们定义势函数为$\Phi(T)=2T.num-T.size$,式中，$num$为表中元素个数，$size$为表的大小<br>我们在此处仅仅分析当表扩张时，它的平摊代价为常数级。<br>加入第$i$次操作出发了扩张，那么有$size_i=2size_{i-1},size_{i-1}=num_{i-1}=num_i-1$,将这些条件带入立即有:<br>$\hat{c_i}=c_i+\Phi(i)-\Phi(i-1)$<br>$=num_i+(2num_i-size_i)-(2num_{i-1}-size_{i-1})$<br>$=num_i+(2num_i-2(num_i-1))-(2(num_i-1)-(num_i-1))$<br>$=3$<br>$=O(1)$  </p>
+<p>对于删除操作，当表收缩时，我们在这里仅给出势函数，算法分析留作读者练习，相信根据上例照猫画虎，是能够轻易解出的。<br>当$\alpha&lt;=1/2$时，$\Phi(T)=T.size/2-T.num$</p>
 
       
     </div>
@@ -358,10 +370,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/12/25/算法分析-2/" rel="prev" title="算法分析(2)">
-                算法分析(2) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -451,7 +459,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
@@ -484,7 +492,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#渐进记号"><span class="nav-number">1.</span> <span class="nav-text">渐进记号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#面向数据输入规模的算法分析"><span class="nav-number">2.</span> <span class="nav-text">面向数据输入规模的算法分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#替换法与递归树法结合"><span class="nav-number">2.1.</span> <span class="nav-text">替换法与递归树法结合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主定理"><span class="nav-number">2.2.</span> <span class="nav-text">主定理</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#渐进记号"><span class="nav-number">1.</span> <span class="nav-text">渐进记号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#面向数据输入规模的算法分析"><span class="nav-number">2.</span> <span class="nav-text">面向数据输入规模的算法分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#替换法与递归树法结合"><span class="nav-number">2.1.</span> <span class="nav-text">替换法与递归树法结合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主定理"><span class="nav-number">2.2.</span> <span class="nav-text">主定理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#递推公式的算法分析"><span class="nav-number">3.</span> <span class="nav-text">递推公式的算法分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#面向操作规模的算法分析-平摊分析"><span class="nav-number">4.</span> <span class="nav-text">面向操作规模的算法分析(平摊分析)</span></a></li></ol></div>
             
 
           </div>
