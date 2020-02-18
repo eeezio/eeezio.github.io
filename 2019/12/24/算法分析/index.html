@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="算法分析的几种不同渐进符号，面向输入数据规模的算法分析方法，一些常见递推公式的算法分析，面向输入操作规模的算法分析方法">
+<meta name="description" content="算法分析的几种不同渐进符号，面向输入数据规模的算法分析方法">
 <meta name="keywords" content="算法分析">
 <meta property="og:type" content="article">
 <meta property="og:title" content="算法分析(1)">
-<meta property="og:url" content="http://yoursite.com/2019/02/24/算法分析/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/12/24/算法分析/index.html">
 <meta property="og:site_name" content="Mortal">
-<meta property="og:description" content="算法分析的几种不同渐进符号，面向输入数据规模的算法分析方法，一些常见递推公式的算法分析，面向输入操作规模的算法分析方法">
+<meta property="og:description" content="算法分析的几种不同渐进符号，面向输入数据规模的算法分析方法">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/2019/02/24/算法分析/1.jpg">
-<meta property="og:updated_time" content="2020-02-18T03:41:29.322Z">
+<meta property="og:image" content="http://yoursite.com/2019/12/24/算法分析/1.jpg">
+<meta property="og:updated_time" content="2020-02-18T03:52:42.483Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法分析(1)">
-<meta name="twitter:description" content="算法分析的几种不同渐进符号，面向输入数据规模的算法分析方法，一些常见递推公式的算法分析，面向输入操作规模的算法分析方法">
-<meta name="twitter:image" content="http://yoursite.com/2019/02/24/算法分析/1.jpg">
+<meta name="twitter:description" content="算法分析的几种不同渐进符号，面向输入数据规模的算法分析方法">
+<meta name="twitter:image" content="http://yoursite.com/2019/12/24/算法分析/1.jpg">
 
 
 
@@ -122,7 +122,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/02/24/算法分析/">
+  <link rel="canonical" href="http://yoursite.com/2019/12/24/算法分析/">
 
 
 
@@ -235,7 +235,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/24/算法分析/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/24/算法分析/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mortal">
@@ -264,8 +264,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-24T10:46:15+08:00">
-                2019-02-24
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-24T10:46:15+08:00">
+                2019-12-24
               </time>
             
 
@@ -289,7 +289,7 @@
 
           
               <div class="post-description">
-                  算法分析的几种不同渐进符号，面向输入数据规模的算法分析方法，一些常见递推公式的算法分析，面向输入操作规模的算法分析方法
+                  算法分析的几种不同渐进符号，面向输入数据规模的算法分析方法
               </div>
           
 
@@ -313,12 +313,12 @@
 <blockquote>
 <p>对于任意的函数$f(n)$和$g(n)$，当且仅当$f(n)=O(g(n))$且$f(n)=\Omega(g(n))$时，$f(n)=\Theta(g(n))$  </p>
 </blockquote>
-<h1 id="面向数据输入规模的算法分析"><a href="#面向数据输入规模的算法分析" class="headerlink" title="面向数据输入规模的算法分析"></a>面向数据输入规模的算法分析</h1><h2 id="替换法与递归树法结合"><a href="#替换法与递归树法结合" class="headerlink" title="替换法与递归树法结合"></a>替换法与递归树法结合</h2><p>《算法导论》中，替换法和递归树法是分别进行讲解的，不过我个人觉得，这两个方法完全可以结合起来，就是先用递归树法来猜测一个”可能正确”的解，然后再去用替换法进行验证。下面先介绍一下替换法<br><strong>替换法思想</strong>：首先对T(n)的解做一个猜测，然后用归纳法证明所做猜测是否正确。<br>例：求解$T(n)=2T(n/2)+n$<br>解: 假设$T(n)=O(nlogn)$,那么有$T(n)&lt;=Cnlogn$<br>又$T(n)=2T(n/2)+n$,则$2T(n/2)+n&lt;=2C<em>n/2log(n/2)+n=C<br>*n(logn-1)+n=C<br>*nlogn+(1-C)n&lt;<br>C</em>nlogn$<br>故猜想成立。<br><strong>递归树思想例子</strong><br>求解递推式$T(n)=T(n/3)+T(2n/3)+cn$<br>该问题的子问题规模是不一样的。<br><img src="/2019/02/24/算法分析/1.jpg" alt><br>由于我们进行算法分析是一般考虑的是渐进上界，所以此时我们考虑最差情况，假设书的高度最高，而且是一棵完全二叉树，叶子节点全部都是满的，那么根据上图，树的深度至多为$log{<em>3/_2}n$.叶子总数为$2^{log</em>{3/2}n}$那么很显然所有叶子的总代价是$\Theta(n^{log_{3/2}2})$,由于这是最坏情况，实际叶子节点要比它少不少，所以我们可以拿这个解作为一个上界的猜测，去拿我们刚刚讲过的替换法去验证，最后会发现我们的猜想是正确的。  </p>
+<h1 id="面向数据输入规模的算法分析"><a href="#面向数据输入规模的算法分析" class="headerlink" title="面向数据输入规模的算法分析"></a>面向数据输入规模的算法分析</h1><h2 id="替换法与递归树法结合"><a href="#替换法与递归树法结合" class="headerlink" title="替换法与递归树法结合"></a>替换法与递归树法结合</h2><p>《算法导论》中，替换法和递归树法是分别进行讲解的，不过我个人觉得，这两个方法完全可以结合起来，就是先用递归树法来猜测一个”可能正确”的解，然后再去用替换法进行验证。下面先介绍一下替换法<br><strong>替换法思想</strong>：首先对T(n)的解做一个猜测，然后用归纳法证明所做猜测是否正确。<br>例：求解$T(n)=2T(n/2)+n$<br>解: 假设$T(n)=O(nlogn)$,那么有$T(n)&lt;=Cnlogn$<br>又$T(n)=2T(n/2)+n$,则<br>$2T(n/2)+n&lt;=2Cn/2log(n/2)+n=Cn(logn-1)+n=Cnlogn+(1-C)n&lt;Cnlogn$<br>故猜想成立。<br><strong>递归树思想例子</strong><br>求解递推式$T(n)=T(n/3)+T(2n/3)+cn$<br>该问题的子问题规模是不一样的。<br><img src="/2019/12/24/算法分析/1.jpg" alt><br>由于我们进行算法分析是一般考虑的是渐进上界，所以此时我们考虑最差情况，假设书的高度最高，而且是一棵完全二叉树，叶子节点全部都是满的，那么根据上图，树的深度至多为$log_{3/2}n$.<br>叶子总数为$2^{log_{3/2}n}$那么很显然所有叶子的总代价是$\Theta(n^{log_{3/2}2})$,由于这是最坏情况，实际叶子节点要比它少不少，所以我们可以拿这个解作为一个上界的猜测，去拿我们刚刚讲过的替换法去验证，最后会发现我们的猜想是正确的。  </p>
 <h2 id="主定理"><a href="#主定理" class="headerlink" title="主定理"></a>主定理</h2><p>我个人曾经按照自己的方法推导了一下，主定理的由来，跟刚刚讲过的递归树方法，其实背后的思想应该是一样的，这里不在多费笔墨。给出主定理如下：  </p>
 <blockquote>
 <p>对于非负递归函数$T(n)=aT(n/b)+f(n)$，其中$a&gt;=1$，$b&gt;1$且为常数，$f(n)$为渐进函数，则$T(n)$有如下三种渐进界限：<br>$if\ \ \ \ f(n)=O(n^{log_ba-\varepsilon})$,常数$\varepsilon&gt;0,then\ \ \ \ T(n)=\Theta(n^{log_ba})$<br>$if\ \ \ \ f(n)=\Theta(n^{log_ba}),then\ \ \ \ T(n)=\Theta(n^{log_ba}*logn)$<br>$if\ \ \ \ f(n)=\Omega(n^{log_ba+\varepsilon})$,常数$\varepsilon&gt;0$且$\exists$常数$c&lt;1$,$n$足够大时有$af(n/b)&lt;=cf(n),then\ \ \ \ T(n)=\Theta(f(n))$  </p>
 </blockquote>
-<p>主定理的使用也是有着注意事项的，那就是不能落入主定里的”间隙”。请看下题。<br>$T(n)=2T(n/2)+nlogn$,你可能认为会选择主定理的第三种情况来进行求解，但实则不然。因为$nlogn$并不多项式大于$n$.这一点我们可以通过微积分的极限理论来求得。有$\lim_{n \rightarrow \infty}{\frac{n^{1+\varepsilon}}{nlogn}}=0$。这就是所谓的主定理的”间隙”.</p>
+<p>主定理的使用也是有着注意事项的，那就是不能落入主定里的”间隙”。请看下题。<br>$T(n)=2T(n/2)+nlogn$<br>你可能认为会选择主定理的第三种情况来进行求解，但实则不然。因为$nlogn$并不多项式大于$n$.这一点我们可以通过微积分的极限理论来求得。有$\lim_{n \rightarrow \infty}{\frac{n^{1+\varepsilon}}{nlogn}}=0$。这就是所谓的主定理的”间隙”.</p>
 
       
     </div>
@@ -349,14 +349,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/12/18/动态规划问题的几种类型-2/" rel="next" title="动态规划问题的几种类型(2)">
+                <i class="fa fa-chevron-left"></i> 动态规划问题的几种类型(2)
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/12/17/动态规划问题的几种类型-1/" rel="prev" title="动态规划问题的几种类型(1)">
-                动态规划问题的几种类型(1) <i class="fa fa-chevron-right"></i>
+              <a href="/2019/12/25/算法分析-2/" rel="prev" title="算法分析(2)">
+                算法分析(2) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -434,7 +438,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -680,6 +684,28 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
 
