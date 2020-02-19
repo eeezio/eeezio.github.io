@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="机器学习,分布式,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="今天《信息论与编码》老师让学生读一篇关于数据挖掘算法的论文，由于机器/深度学习，分布式等领域名头很响，所以找到了一篇将二者结合的文章来转一下，旨在让自己对分布式计算有一个感性的认识。">
+<meta name="keywords" content="机器学习,分布式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于mapreduce的k-means算法">
+<meta property="og:url" content="http://yoursite.com/2019/12/25/基于mapreduce的k-means算法/index.html">
+<meta property="og:site_name" content="Mortal">
+<meta property="og:description" content="今天《信息论与编码》老师让学生读一篇关于数据挖掘算法的论文，由于机器/深度学习，分布式等领域名头很响，所以找到了一篇将二者结合的文章来转一下，旨在让自己对分布式计算有一个感性的认识。">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2019/12/25/基于mapreduce的k-means算法/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/25/基于mapreduce的k-means算法/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/25/基于mapreduce的k-means算法/3.png">
+<meta property="og:updated_time" content="2020-02-19T12:54:46.703Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于mapreduce的k-means算法">
+<meta name="twitter:description" content="今天《信息论与编码》老师让学生读一篇关于数据挖掘算法的论文，由于机器/深度学习，分布式等领域名头很响，所以找到了一篇将二者结合的文章来转一下，旨在让自己对分布式计算有一个感性的认识。">
+<meta name="twitter:image" content="http://yoursite.com/2019/12/25/基于mapreduce的k-means算法/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/12/25/基于mapreduce的k-means算法/">
+
+
+
+
+
+  <title>基于mapreduce的k-means算法 | Mortal</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mortal</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">王哲的个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/25/基于mapreduce的k-means算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mortal">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mortal">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">基于mapreduce的k-means算法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-25T11:38:18+08:00">
+                2019-12-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  今天《信息论与编码》老师让学生读一篇关于数据挖掘算法的论文，由于机器/深度学习，分布式等领域名头很响，所以找到了一篇将二者结合的文章来转一下，旨在让自己对分布式计算有一个感性的认识。
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="mapreduce和kmeans算法简介"><a href="#mapreduce和kmeans算法简介" class="headerlink" title="mapreduce和kmeans算法简介"></a>mapreduce和kmeans算法简介</h1><p>随着信息技术的进步以及信息化社会的发展，聚类计算任务所面临的数据规模越来越大,k-means算法是一种常用的数据挖掘算法，其串行计算方法的时间复杂度比较高，处理能力存在局限性。Mapreduce模型是Google实验室提出的分布式并行编程模型或框架，它能组织集群来处理大规模数据集，成为云计算平台主流的并行数据处理模型。  </p>
+<h1 id="mapreduce编程模型"><a href="#mapreduce编程模型" class="headerlink" title="mapreduce编程模型"></a>mapreduce编程模型</h1><p>Mapreduce编程模型的基本思路：将大数据集分解为成百上千的小数据集splits，每个（或若干个数据集分别由集群中的1个节点（一般就是一台普通的计算机）并行执行map计算任务（指定了映射规则）并生成中间结果，然后这些中间结果又由大量的节点并行执行Reduce计算任务，形成最终结果．图１描述了Mapreduce的运行机制．在数据段，jobtracker获得待计算数据片在namenode上的存储元信息；在map阶段，jobtracker指派多个tasktracker完成map运算任务并生成中间结果；shuffle阶段完成中间计算结果的混排交换；jobtracker指派tasktracker完成reduce任务；reduce任务完成后通知jobtracker与namenode以产生最后的输出结果  </p>
+<p><img src="/2019/12/25/基于mapreduce的k-means算法/1.png" alt>  </p>
+<p>Mapreduce计算模型的核心是Map和Reduce函数，这２个函数由编程人员负责实现，功能是按一定的映射规则将输入的键值对〈key，value〉转换成另一个或一批键值对〈key，value〉输出．Map函数将小数据集解析成一批〈key，value〉对，计算处理后生成中间结果一批List（〈k2，v2〉）；Reduce函数将〈k2，List（v2）〉作为输入数据，对属于同一个key的value集进行计算处理．编程人员只需关注这２个函数具体计算任务，其他并行计算中的复杂问题诸如分布式文件系统、工作调度、容错、机器间通信等都交给MapReduce运行系统后台处理．  </p>
+<h1 id="k-means聚类算法的基本思路"><a href="#k-means聚类算法的基本思路" class="headerlink" title="k-means聚类算法的基本思路"></a>k-means聚类算法的基本思路</h1><p>k-means聚类算法是一种基于样本间相似性度量的间接聚类方法，其算法思路比较简单：首先从ｎ个数据对象中任意选择ｋ个对象作为初始聚类中心；对于所剩下的其他对象，根据它们与这些聚类中心的相似度（距离），分别将它们分配给与其最相似的（聚类中心所代表的）聚类；然后再计算每个所获新聚类的聚类中心（该聚类中所有对象的均值）；不断重复这一过程直至标准测度函数开始收敛为止．  </p>
+<p>串行实现算法的时间复杂度比较高，为ｎ×ｋ×ｔ×Ｏ，其中：ｎ为数据对象总个数；ｋ为期望得到的聚类的个数；ｔ为算法迭代的次数；Ｏ为一次迭代中计算待分配数据到中心点距离的时间复杂度．如果有1x104个数据对象需要聚成100个类，那么１次迭代中需要完成1x106次计算数据对象到中心点的距离这个基本操作，这是算法中最耗时的部分，也是容易进行并行处理的：１个数据对象在完成与ｋ个聚类中心的距离比较的同时，其他数据对象也可以与聚类中心进行比较．  </p>
+<h1 id="k-means聚类算法的Mapreduce并行化方法"><a href="#k-means聚类算法的Mapreduce并行化方法" class="headerlink" title="k-means聚类算法的Mapreduce并行化方法"></a>k-means聚类算法的Mapreduce并行化方法</h1><p>k-means聚类算法进行Mapreduce的基本思路：对串行算法中每１次迭代启动对应的１次Mapreduce计算过程，完成数据记录到聚类中心的距离计算以及新的聚类中心的计算．图2描述了k-means聚类算法Mapreduce并行化实现方法．为了适合Mapreduce计算模型处理，须将待处理数据记录以行形式存储，使待处理数据能按行分片，且片间数据无相关性，分片过程由Mapreduce运行的环境完成，不需要编写代码．  </p>
+<p><img src="/2019/12/25/基于mapreduce的k-means算法/2.png" alt>  </p>
+<h2 id="Map函数的设计"><a href="#Map函数的设计" class="headerlink" title="Map函数的设计"></a>Map函数的设计</h2><p>Map函数的任务是完成每个记录到中心点距离的计算并重新标记其属于的新聚类类别，其输入为待聚类所有记录数据和上一轮迭代（或初始聚类）的聚类中心，输入数据记录〈key，value〉对的形式为〈行号，记录行〉；每个Map函数都读入聚类中心描述文件，Map函数对输入的每个记录点计算出距离其最近的类中心，并做新类别的标记；输出中间结果〈key，value〉对的形式为〈聚类类别ID，记录属性向量〉．Map函数的伪代码如下:  </p>
+<pre><code class="C++"><span class="function"><span class="keyword">void</span> <span class="title">map</span><span class="params">(writablekey,textpoint)</span></span>
+<span class="function"></span>{
+min_distance=MAXDISTANCE;
+<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;k;i++)
+{
+<span class="keyword">if</span>(ditance(point,cluster[i]&lt;min_distance))
+{
+min_distance=distance(point,cluster[i]);
+currentclusrer_ID=i;
+}
+}
+emit_intermediate(currentcluster_ID,point)
+}</code></pre>
+<h2 id="Reduce函数的设计"><a href="#Reduce函数的设计" class="headerlink" title="Reduce函数的设计"></a>Reduce函数的设计</h2><p>Reduce函数的任务是根据Map函数得到的<br>中间结果计算出新的聚类中心，供下一轮Maprecudejob使用．输入数据〈key，value〉对的形式为〈聚类类别ID，｛记录属性向量集｝〉；所有key相同的记录（即有相同类别ID的记录）送给一个Reduce任务———累加key相同的点个数和各记录分量的和，求各分量的均值，得到新的聚类中心描述文件；输出结果〈key，value〉对的形式为〈聚类类别ID，均值向量〉．Reduce函数的伪代码如下：  </p>
+<pre><code class="C++"><span class="function"><span class="keyword">void</span> <span class="title">reduce</span><span class="params">(writablekey,iterator&lt;pointwritable&gt;points)</span></span>
+<span class="function"></span>{
+num=<span class="number">0</span>;
+<span class="keyword">while</span>(points.hasnext())
+{
+pointwritablecurrentpoint=point.next();
+num+=currentpoint.get_num();
+<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;dimension;i++)
+sum[i]+=currentpoint.point[i];
+}
+<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;dimension;i++)
+mean[i]=sum[i]/num;
+emit(key,mean);
+}</code></pre>
+<p>判断该聚类是否已收敛：比较上一轮Mapreducejob得到的聚类中心与本Mapreducejob聚类中心距离，若变化小于给定阈值，则算法结束；反之，则用本轮的聚类中心文件替换上一轮的中心文件，并启动新一轮的Mapreducejob．图3为k-means聚类算法Mapreduce实现方法处理数据的过程示意图．在Reduce任务开始前，可对Map任务执行节点本地的中间结果以key值为索引进行分组和排序，以提高Reduce任务的执行效率．</p>
+<p><img src="/2019/12/25/基于mapreduce的k-means算法/3.png" alt>  </p>
+<blockquote>
+<p>参考文献<br>[1] 江小平,李成华.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$k-means$ 聚类算法的$MapReduce$并行化实现[J].&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;华中科技大学学报,2011.6</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+            <a href="/tags/分布式/" rel="tag"># 分布式</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/24/算法分析/" rel="next" title="算法分析">
+                <i class="fa fa-chevron-left"></i> 算法分析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/01/06/wsl2-WindowsTerminal并开启图形应用/" rel="prev" title="抛弃虚拟机！wsl2+Windows Terminal并开启图形应用">
+                抛弃虚拟机！wsl2+Windows Terminal并开启图形应用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Mortal</p>
+              <p class="site-description motion-element" itemprop="description">终日钦钦，常在战场</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#mapreduce和kmeans算法简介"><span class="nav-number">1.</span> <span class="nav-text">mapreduce和kmeans算法简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mapreduce编程模型"><span class="nav-number">2.</span> <span class="nav-text">mapreduce编程模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#k-means聚类算法的基本思路"><span class="nav-number">3.</span> <span class="nav-text">k-means聚类算法的基本思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#k-means聚类算法的Mapreduce并行化方法"><span class="nav-number">4.</span> <span class="nav-text">k-means聚类算法的Mapreduce并行化方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Map函数的设计"><span class="nav-number">4.1.</span> <span class="nav-text">Map函数的设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reduce函数的设计"><span class="nav-number">4.2.</span> <span class="nav-text">Reduce函数的设计</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mortal</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

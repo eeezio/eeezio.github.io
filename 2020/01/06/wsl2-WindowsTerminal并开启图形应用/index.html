@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="实用工具,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="今天跟实验室的同学吹了一波微软的WSL2和terminal,他们纷纷嚷嚷着让我写个教程，故有了此文。用wsl2的主要原因在于在下的nsp硬盘太小双系统实在吃力，可是要开发自己的OS小项目又不得不用Linux，用wsl2能省很多空间还有逼格；至于terminal，主要原因在于好看，它的颜值实在是比cmd或者powershell不知高到哪里去了。">
+<meta name="keywords" content="实用工具">
+<meta property="og:type" content="article">
+<meta property="og:title" content="抛弃虚拟机！wsl2+Windows Terminal并开启图形应用">
+<meta property="og:url" content="http://yoursite.com/2020/01/06/wsl2-WindowsTerminal并开启图形应用/index.html">
+<meta property="og:site_name" content="Mortal">
+<meta property="og:description" content="今天跟实验室的同学吹了一波微软的WSL2和terminal,他们纷纷嚷嚷着让我写个教程，故有了此文。用wsl2的主要原因在于在下的nsp硬盘太小双系统实在吃力，可是要开发自己的OS小项目又不得不用Linux，用wsl2能省很多空间还有逼格；至于terminal，主要原因在于好看，它的颜值实在是比cmd或者powershell不知高到哪里去了。">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2020/01/06/wsl2-WindowsTerminal并开启图形应用/2.jpg">
+<meta property="og:updated_time" content="2020-02-19T14:08:07.569Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="抛弃虚拟机！wsl2+Windows Terminal并开启图形应用">
+<meta name="twitter:description" content="今天跟实验室的同学吹了一波微软的WSL2和terminal,他们纷纷嚷嚷着让我写个教程，故有了此文。用wsl2的主要原因在于在下的nsp硬盘太小双系统实在吃力，可是要开发自己的OS小项目又不得不用Linux，用wsl2能省很多空间还有逼格；至于terminal，主要原因在于好看，它的颜值实在是比cmd或者powershell不知高到哪里去了。">
+<meta name="twitter:image" content="http://yoursite.com/2020/01/06/wsl2-WindowsTerminal并开启图形应用/2.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/01/06/wsl2-WindowsTerminal并开启图形应用/">
+
+
+
+
+
+  <title>抛弃虚拟机！wsl2+Windows Terminal并开启图形应用 | Mortal</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mortal</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">王哲的个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/06/wsl2-WindowsTerminal并开启图形应用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mortal">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mortal">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">抛弃虚拟机！wsl2+Windows Terminal并开启图形应用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-01-06T20:41:05+08:00">
+                2020-01-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  今天跟实验室的同学吹了一波微软的WSL2和terminal,他们纷纷嚷嚷着让我写个教程，故有了此文。用wsl2的主要原因在于在下的nsp硬盘太小双系统实在吃力，可是要开发自己的OS小项目又不得不用Linux，用wsl2能省很多空间还有逼格；至于terminal，主要原因在于好看，它的颜值实在是比cmd或者powershell不知高到哪里去了。
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Terminal"><a href="#Terminal" class="headerlink" title="Terminal"></a>Terminal</h1><h2 id="简介以及安装注意事项"><a href="#简介以及安装注意事项" class="headerlink" title="简介以及安装注意事项"></a>简介以及安装注意事项</h2><p>这个东西全名叫Windows terminal，它和powershell与cmd相比的优势就在于，它可以像浏览器一样开启多个窗口，并且定制程度比其他两种高得多，GitHub也有很多官方提供的主题供大家使用。只不过目前这个东西还在preview阶段，1803的Windows系统是不能支持的，建议开启Windows insider慢速通道，获取最新版本并且相对稳定的预览系统来尝鲜。具体开启方式在设置-&gt;更新和安全-&gt;Windows预览体验计划  </p>
+<p>把系统更新完毕后，我们就可以继续了，这个应用在Windows商店，是个uwp应用，直接搜索就可以下载，uwp应用的有个好处就在于可以跨平台，比如Windows和Windows phone，还有就是卸载起来干干净净。挺好的一东西，可是现在差不多快被微软折腾凉了，wp也早就死了，真是太可惜了。   </p>
+<h2 id="美化"><a href="#美化" class="headerlink" title="美化"></a>美化</h2><p>首先我们先对powershell进行美化配置，先装一个powerline.打开powershell，输入如下两条命令</p>
+<blockquote>
+<p>Install-Module posh-git -Scope CurrentUser<br>Install-Module oh-my-posh -Scope CurrentUser  </p>
+</blockquote>
+<p>当然，安装途中可能有一些询问，这时候一路Y即可。<br>等装完了之后可能会提示你重启，好了去重启吧，重启完后我们继续啊。  </p>
+<p>搞定之后，我们打开~\Documents\WindowsPowerShell，然后新建一个叫做Microsoft.PowerShell_profile.ps1的文件，输入  </p>
+<blockquote>
+<p>Import-Module posh-git<br>Import-Module oh-my-posh<br>Set-Theme PowerLine  </p>
+</blockquote>
+<p>并且保存。其实这个东西是启动脚本，这样一来，每次我们启动powershell就会自动开启powerline主题了。<br>好了，这个时候可以启动我们渴望已经的terminal了。点击顶部栏的那个倒着的箭头，你会看到一个齿轮图标的settings按钮，点击之后，你就进入了profiles.json这个配置文件中，你可以在这个文件里来美化你的Windows terminal<br>这个json文件里面键值对真的是超级多，这里捡几个重要的给大家介绍一下  </p>
+<ul>
+<li>acrylicOpacity用来控制不透明度，当值为0则完全透明。 </li>
+<li>useAcrylic如果设置为true则会开启毛玻璃特效。  </li>
+<li>cursorshape和cursorcolor分别是光标的形状和颜色  </li>
+<li>commandline是对应启动的shell，可以是powershell，可以是cmd，当然也可以是wsl。  </li>
+</ul>
+<p>接下来我们对字体进行注册，这也是让powerline不出现乱码的很关键的一步。我们打开注册表(仅Windows专业版及其以上版本操作系统才可以)  </p>
+<blockquote>
+<p>计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\FontLink\SystemLink<br>这里我选用的是Sarasa Term SC这款字体，用起来很不错，也不建议你们去折腾别的字体去了，下载好字体后直接安装。，然后再将以下的文件复制并保存在一个reg中即可。  </p>
+<pre><code>[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\FontLink\SystemLink]
+&quot;Sarasa Term SC&quot;=hex(7):4d,00,49,00,43,00,52,00,4f,00,53,00,53,00,2e,00,54,00,\
+  54,00,46,00,2c,00,4d,00,69,00,63,00,72,00,6f,00,73,00,6f,00,66,00,74,00,20,\
+  00,53,00,61,00,6e,00,73,00,20,00,53,00,65,00,72,00,69,00,66,00,2c,00,31,00,\
+  30,00,38,00,2c,00,31,00,32,00,32,00,00,00,4d,00,49,00,43,00,52,00,4f,00,53,\
+  00,53,00,2e,00,54,00,54,00,46,00,2c,00,4d,00,69,00,63,00,72,00,6f,00,73,00,\
+  6f,00,66,00,74,00,20,00,53,00,61,00,6e,00,73,00,20,00,53,00,65,00,72,00,69,\
+  00,66,00,00,00,4d,00,49,00,4e,00,47,00,4c,00,49,00,55,00,2e,00,54,00,54,00,\
+  43,00,2c,00,50,00,4d,00,69,00,6e,00,67,00,4c,00,69,00,55,00,00,00,4d,00,53,\
+  00,4d,00,49,00,4e,00,43,00,48,00,4f,00,2e,00,54,00,54,00,43,00,2c,00,4d,00,\
+  53,00,20,00,50,00,4d,00,69,00,6e,00,63,00,68,00,6f,00,00,00,42,00,41,00,54,\
+  00,41,00,4e,00,47,00,2e,00,54,00,54,00,43,00,2c,00,42,00,61,00,74,00,61,00,\
+  6e,00,67,00,00,00,4d,00,53,00,59,00,48,00,2e,00,54,00,54,00,43,00,2c,00,4d,\
+  00,69,00,63,00,72,00,6f,00,73,00,6f,00,66,00,74,00,20,00,59,00,61,00,48,00,\
+  65,00,69,00,20,00,55,00,49,00,00,00,4d,00,53,00,4a,00,48,00,2e,00,54,00,54,\
+  00,43,00,2c,00,4d,00,69,00,63,00,72,00,6f,00,73,00,6f,00,66,00,74,00,20,00,\
+  4a,00,68,00,65,00,6e,00,67,00,48,00,65,00,69,00,20,00,55,00,49,00,00,00,59,\
+  00,55,00,47,00,4f,00,54,00,48,00,4d,00,2e,00,54,00,54,00,43,00,2c,00,59,00,\
+  75,00,20,00,47,00,6f,00,74,00,68,00,69,00,63,00,20,00,55,00,49,00,00,00,4d,\
+  00,41,00,4c,00,47,00,55,00,4e,00,2e,00,54,00,54,00,46,00,2c,00,4d,00,61,00,\
+  6c,00,67,00,75,00,6e,00,20,00,47,00,6f,00,74,00,68,00,69,00,63,00,00,00,53,\
+  00,45,00,47,00,55,00,49,00,53,00,59,00,4d,00,2e,00,54,00,54,00,46,00,2c,00,\
+  53,00,65,00,67,00,6f,00,65,00,20,00,55,00,49,00,20,00,53,00,79,00,6d,00,62,\
+  00,6f,00,6c,00,00,00,00,00</code></pre></blockquote>
+<p>你可以去<a href="https://github.com/mbadolato/iTerm2-Color-Schemes这个仓库来寻找你喜欢的颜色主题，然后在json中的colorScheme键中来应用你下载的主题就好。不过恶心的地方就在于他那个颜色混起来实在让人看不清，不如有的主题可能有蓝底黄字，根本看不清，这里给出我的配置文件，如果你们懒得配置的话直接用就好，连wsl部分都不用配置了。" target="_blank" rel="noopener">https://github.com/mbadolato/iTerm2-Color-Schemes这个仓库来寻找你喜欢的颜色主题，然后在json中的colorScheme键中来应用你下载的主题就好。不过恶心的地方就在于他那个颜色混起来实在让人看不清，不如有的主题可能有蓝底黄字，根本看不清，这里给出我的配置文件，如果你们懒得配置的话直接用就好，连wsl部分都不用配置了。</a>  </p>
+<pre><code class="json">{
+    <span class="attr">"$schema"</span>: <span class="string">"https://aka.ms/terminal-profiles-schema"</span>,
+    <span class="attr">"globals"</span> : 
+    {
+        <span class="attr">"alwaysShowTabs"</span> : <span class="literal">true</span>,
+        <span class="attr">"defaultProfile"</span> : <span class="string">"{08b5e85b-3615-463d-8df1-70bc4703843f}"</span>,
+        <span class="attr">"initialCols"</span> : <span class="number">120</span>,
+        <span class="attr">"initialRows"</span> : <span class="number">30</span>,
+        <span class="attr">"keybindings"</span> : 
+        [
+            {
+                <span class="attr">"command"</span> : <span class="string">"closeTab"</span>,
+                <span class="attr">"keys"</span> : 
+                [
+                    <span class="string">"ctrl+w"</span>
+                ]
+            },
+            {
+                <span class="attr">"command"</span> : <span class="string">"newTab"</span>,
+                <span class="attr">"keys"</span> : 
+                [
+                    <span class="string">"ctrl+t"</span>
+                ]
+            },
+            {
+                <span class="attr">"command"</span> : <span class="string">"newTabProfile0"</span>,
+                <span class="attr">"keys"</span> : 
+                [
+                    <span class="string">"ctrl+shift+1"</span>
+                ]
+            },
+            {
+                <span class="attr">"command"</span> : <span class="string">"newTabProfile1"</span>,
+                <span class="attr">"keys"</span> : 
+                [
+                    <span class="string">"ctrl+shift+2"</span>
+                ]
+            },
+            {
+                <span class="attr">"command"</span> : <span class="string">"newTabProfile2"</span>,
+                <span class="attr">"keys"</span> : 
+                [
+                    <span class="string">"ctrl+shift+3"</span>
+                ]
+            },
+            {
+                <span class="attr">"command"</span> : <span class="string">"newTabProfile3"</span>,
+                <span class="attr">"keys"</span> : 
+                [
+                    <span class="string">"ctrl+shift+4"</span>
+                ]
+            },
+            {
+                <span class="attr">"command"</span> : <span class="string">"newTabProfile4"</span>,
+                <span class="attr">"keys"</span> : 
+                [
+                    <span class="string">"ctrl+shift+5"</span>
+                ]
+            },
+            {
+                <span class="attr">"command"</span> : <span class="string">"newTabProfile5"</span>,
+                <span class="attr">"keys"</span> : 
+                [
+                    <span class="string">"ctrl+shift+6"</span>
+                ]
+            },
+            {
+                <span class="attr">"command"</span> : <span class="string">"newTabProfile6"</span>,
+                <span class="attr">"keys"</span> : 
+                [
+                    <span class="string">"ctrl+shift+7"</span>
+                ]
+            },
+            {
+                <span class="attr">"command"</span> : <span class="string">"newTabProfile7"</span>,
+                <span class="attr">"keys"</span> : 
+                [
+                    <span class="string">"ctrl+shift+8"</span>
+                ]
+            },
+            {
+                <span class="attr">"command"</span> : <span class="string">"newTabProfile8"</span>,
+                <span class="attr">"keys"</span> : 
+                [
+                    <span class="string">"ctrl+shift+9"</span>
+                ]
+            },
+            {
+                <span class="attr">"command"</span> : <span class="string">"nextTab"</span>,
+                <span class="attr">"keys"</span> : 
+                [
+                    <span class="string">"ctrl+tab"</span>
+                ]
+            },
+            {
+                <span class="attr">"command"</span> : <span class="string">"openSettings"</span>,
+                <span class="attr">"keys"</span> : 
+                [
+                    <span class="string">"ctrl+,"</span>
+                ]
+            },
+            {
+                <span class="attr">"command"</span> : <span class="string">"prevTab"</span>,
+                <span class="attr">"keys"</span> : 
+                [
+                    <span class="string">"ctrl+shift+tab"</span>
+                ]
+            },
+            {
+                <span class="attr">"command"</span> : <span class="string">"scrollDown"</span>,
+                <span class="attr">"keys"</span> : 
+                [
+                    <span class="string">"ctrl+shift+down"</span>
+                ]
+            },
+            {
+                <span class="attr">"command"</span> : <span class="string">"scrollDownPage"</span>,
+                <span class="attr">"keys"</span> : 
+                [
+                    <span class="string">"ctrl+shift+pgdn"</span>
+                ]
+            },
+            {
+                <span class="attr">"command"</span> : <span class="string">"scrollUp"</span>,
+                <span class="attr">"keys"</span> : 
+                [
+                    <span class="string">"ctrl+shift+up"</span>
+                ]
+            },
+            {
+                <span class="attr">"command"</span> : <span class="string">"scrollUpPage"</span>,
+                <span class="attr">"keys"</span> : 
+                [
+                    <span class="string">"ctrl+shift+pgup"</span>
+                ]
+            },
+            {
+                <span class="attr">"command"</span> : <span class="string">"switchToTab0"</span>,
+                <span class="attr">"keys"</span> : 
+                [
+                    <span class="string">"alt+1"</span>
+                ]
+            },
+            {
+                <span class="attr">"command"</span> : <span class="string">"switchToTab1"</span>,
+                <span class="attr">"keys"</span> : 
+                [
+                    <span class="string">"alt+2"</span>
+                ]
+            },
+            {
+                <span class="attr">"command"</span> : <span class="string">"switchToTab2"</span>,
+                <span class="attr">"keys"</span> : 
+                [
+                    <span class="string">"alt+3"</span>
+                ]
+            },
+            {
+                <span class="attr">"command"</span> : <span class="string">"switchToTab3"</span>,
+                <span class="attr">"keys"</span> : 
+                [
+                    <span class="string">"alt+4"</span>
+                ]
+            },
+            {
+                <span class="attr">"command"</span> : <span class="string">"switchToTab4"</span>,
+                <span class="attr">"keys"</span> : 
+                [
+                    <span class="string">"alt+5"</span>
+                ]
+            },
+            {
+                <span class="attr">"command"</span> : <span class="string">"switchToTab5"</span>,
+                <span class="attr">"keys"</span> : 
+                [
+                    <span class="string">"alt+6"</span>
+                ]
+            },
+            {
+                <span class="attr">"command"</span> : <span class="string">"switchToTab6"</span>,
+                <span class="attr">"keys"</span> : 
+                [
+                    <span class="string">"alt+7"</span>
+                ]
+            },
+            {
+                <span class="attr">"command"</span> : <span class="string">"switchToTab7"</span>,
+                <span class="attr">"keys"</span> : 
+                [
+                    <span class="string">"alt+8"</span>
+                ]
+            },
+            {
+                <span class="attr">"command"</span> : <span class="string">"switchToTab8"</span>,
+                <span class="attr">"keys"</span> : 
+                [
+                    <span class="string">"alt+9"</span>
+                ]
+            }
+        ],
+        <span class="attr">"requestedTheme"</span> : <span class="string">"system"</span>,
+        <span class="attr">"showTabsInTitlebar"</span> : <span class="literal">true</span>,
+        <span class="attr">"showTerminalTitleInTitlebar"</span> : <span class="literal">true</span>,
+        <span class="attr">"wordDelimiters"</span> : <span class="string">" ./\\()\"'-:,.;&lt;&gt;~!@#$%^&amp;*|+=[]{}~?\u2502"</span>
+    },
+    <span class="attr">"profiles"</span> : 
+    [
+        {
+            <span class="attr">"acrylicOpacity"</span> : <span class="number">0.65</span>,
+            <span class="attr">"closeOnExit"</span> : <span class="literal">true</span>,
+            <span class="attr">"colorScheme"</span> : <span class="string">"3024 Day"</span>,
+            <span class="attr">"commandline"</span> : <span class="string">"powershell.exe"</span>,
+            <span class="attr">"cursorColor"</span> : <span class="string">"#657B83"</span>,
+            <span class="attr">"cursorShape"</span> : <span class="string">"vintage"</span>,
+            <span class="attr">"fontFace"</span> : <span class="string">"Sarasa Term Slab SC"</span>,
+            <span class="attr">"fontSize"</span> : <span class="number">12</span>,
+            <span class="attr">"guid"</span> : <span class="string">"{08b5e85b-3615-463d-8df1-70bc4703843f}"</span>,
+            <span class="attr">"historySize"</span> : <span class="number">9001</span>,
+            <span class="attr">"icon"</span> : <span class="string">"ms-appdata:///roaming/powershell_32px.png"</span>,
+            <span class="attr">"name"</span> : <span class="string">"PowerShell"</span>,
+            <span class="attr">"padding"</span> : <span class="string">"0, 0, 0, 0"</span>,
+            <span class="attr">"snapOnInput"</span> : <span class="literal">true</span>,
+            <span class="attr">"startingDirectory"</span> : <span class="string">"%USERPROFILE%"</span>,
+            <span class="attr">"useAcrylic"</span> : <span class="literal">true</span>,
+            <span class="attr">"tabTitle"</span> : <span class="string">"PowerShell"</span>
+        },
+        {
+            <span class="attr">"acrylicOpacity"</span> : <span class="number">0.75</span>,
+            <span class="attr">"closeOnExit"</span> : <span class="literal">true</span>,
+            <span class="attr">"colorScheme"</span> : <span class="string">"Solarized Light"</span>,
+            <span class="attr">"commandline"</span> : <span class="string">"pwsh"</span>,
+            <span class="attr">"cursorColor"</span> : <span class="string">"#657B83"</span>,
+            <span class="attr">"cursorShape"</span> : <span class="string">"bar"</span>,
+            <span class="attr">"fontFace"</span> : <span class="string">"Sarasa Term Slab SC"</span>,
+            <span class="attr">"fontSize"</span> : <span class="number">12</span>,
+            <span class="attr">"guid"</span> : <span class="string">"{f1c1bd17-a4e8-4497-acc2-4245b3b6bbd3}"</span>,
+            <span class="attr">"historySize"</span> : <span class="number">9001</span>,
+            <span class="attr">"icon"</span> : <span class="string">"ms-appdata:///roaming/powershell_32px.png"</span>,
+            <span class="attr">"name"</span> : <span class="string">"PowerShell Core"</span>,
+            <span class="attr">"padding"</span> : <span class="string">"0, 0, 0, 0"</span>,
+            <span class="attr">"snapOnInput"</span> : <span class="literal">true</span>,
+            <span class="attr">"startingDirectory"</span> : <span class="string">"%USERPROFILE%"</span>,
+            <span class="attr">"useAcrylic"</span> : <span class="literal">true</span>,
+            <span class="attr">"tabTitle"</span> : <span class="string">"PowerShell Core"</span>
+        },
+        {
+            <span class="attr">"acrylicOpacity"</span> : <span class="number">0.85000002384185791</span>,
+            <span class="attr">"closeOnExit"</span> : <span class="literal">false</span>,
+            <span class="attr">"colorScheme"</span> : <span class="string">"3024 Day"</span>,
+            <span class="attr">"commandline"</span> : <span class="string">"wsl ~"</span>,
+            <span class="attr">"cursorColor"</span> : <span class="string">"#4A4543"</span>,
+            <span class="attr">"cursorShape"</span> : <span class="string">"bar"</span>,
+            <span class="attr">"fontFace"</span> : <span class="string">"Sarasa Term Slab SC"</span>,
+            <span class="attr">"fontSize"</span> : <span class="number">12</span>,
+            <span class="attr">"guid"</span> : <span class="string">"{78e390db-1bff-4533-9d7c-20f53d8bafa1}"</span>,
+            <span class="attr">"historySize"</span> : <span class="number">9001</span>,
+            <span class="attr">"icon"</span> : <span class="string">"ms-appdata:///roaming/ubuntu_32px.png"</span>,
+            <span class="attr">"name"</span> : <span class="string">"Default WSL"</span>,
+            <span class="attr">"padding"</span> : <span class="string">"0, 0, 0, 0"</span>,
+            <span class="attr">"snapOnInput"</span> : <span class="literal">true</span>,
+            <span class="attr">"useAcrylic"</span> : <span class="literal">true</span>
+        },
+        {
+            <span class="attr">"acrylicOpacity"</span> : <span class="number">0.85000002384185791</span>,
+            <span class="attr">"closeOnExit"</span> : <span class="literal">false</span>,
+            <span class="attr">"colorScheme"</span> : <span class="string">"Night Owlish Light"</span>,
+            <span class="attr">"commandline"</span> : <span class="string">"ssh mahoshojohcg@192.168.136.128"</span>,
+            <span class="attr">"cursorColor"</span> : <span class="string">"#403F53"</span>,
+            <span class="attr">"cursorShape"</span> : <span class="string">"bar"</span>,
+            <span class="attr">"fontFace"</span> : <span class="string">"Sarasa Term Slab SC"</span>,
+            <span class="attr">"fontSize"</span> : <span class="number">12</span>,
+            <span class="attr">"guid"</span> : <span class="string">"{50dc2393-bd60-4cbd-bd8f-64a7602e86ea}"</span>,
+            <span class="attr">"historySize"</span> : <span class="number">9001</span>,
+            <span class="attr">"icon"</span> : <span class="string">"ms-appdata:///roaming/debian.png"</span>,
+            <span class="attr">"name"</span> : <span class="string">"Debian VM"</span>,
+            <span class="attr">"padding"</span> : <span class="string">"0, 0, 0, 0"</span>,
+            <span class="attr">"snapOnInput"</span> : <span class="literal">true</span>,
+            <span class="attr">"useAcrylic"</span> : <span class="literal">true</span>
+        },
+        {
+            <span class="attr">"acrylicOpacity"</span> : <span class="number">0.6</span>,
+            <span class="attr">"closeOnExit"</span> : <span class="literal">false</span>,
+            <span class="attr">"colorScheme"</span> : <span class="string">"3024 Day"</span>,
+            <span class="attr">"guid"</span>: <span class="string">"{c6eaf9f4-32a7-5fdc-b5cf-066e8a4b1e40}"</span>,
+            <span class="attr">"hidden"</span>: <span class="literal">false</span>,
+            <span class="attr">"name"</span>: <span class="string">"Ubuntu-18.04"</span>,
+            <span class="attr">"source"</span>: <span class="string">"Windows.Terminal.Wsl"</span>,
+            <span class="attr">"snapOnInput"</span> : <span class="literal">true</span>,
+            <span class="attr">"useAcrylic"</span> : <span class="literal">true</span>,
+            <span class="attr">"cursorColor"</span> : <span class="string">"#657B83"</span>,
+            <span class="attr">"cursorShape"</span> : <span class="string">"vintage"</span>
+        },
+        {
+            <span class="attr">"guid"</span>: <span class="string">"{b453ae62-4e3d-5e58-b989-0a998ec441b8}"</span>,
+            <span class="attr">"hidden"</span>: <span class="literal">false</span>,
+            <span class="attr">"name"</span>: <span class="string">"Azure Cloud Shell"</span>,
+            <span class="attr">"source"</span>: <span class="string">"Windows.Terminal.Azure"</span>
+        }
+    ],
+    <span class="attr">"schemes"</span> : 
+    [
+        {
+            <span class="attr">"background"</span> : <span class="string">"#0C0C0C"</span>,
+            <span class="attr">"black"</span> : <span class="string">"#0C0C0C"</span>,
+            <span class="attr">"blue"</span> : <span class="string">"#0037DA"</span>,
+            <span class="attr">"brightBlack"</span> : <span class="string">"#767676"</span>,
+            <span class="attr">"brightBlue"</span> : <span class="string">"#3B78FF"</span>,
+            <span class="attr">"brightCyan"</span> : <span class="string">"#61D6D6"</span>,
+            <span class="attr">"brightGreen"</span> : <span class="string">"#16C60C"</span>,
+            <span class="attr">"brightPurple"</span> : <span class="string">"#B4009E"</span>,
+            <span class="attr">"brightRed"</span> : <span class="string">"#E74856"</span>,
+            <span class="attr">"brightWhite"</span> : <span class="string">"#F2F2F2"</span>,
+            <span class="attr">"brightYellow"</span> : <span class="string">"#F9F1A5"</span>,
+            <span class="attr">"cyan"</span> : <span class="string">"#3A96DD"</span>,
+            <span class="attr">"foreground"</span> : <span class="string">"#A7B191"</span>,
+            <span class="attr">"green"</span> : <span class="string">"#13A10E"</span>,
+            <span class="attr">"name"</span> : <span class="string">"Campbell"</span>,
+            <span class="attr">"purple"</span> : <span class="string">"#881798"</span>,
+            <span class="attr">"red"</span> : <span class="string">"#C50F1F"</span>,
+            <span class="attr">"white"</span> : <span class="string">"#CCCCCC"</span>,
+            <span class="attr">"yellow"</span> : <span class="string">"#C19C00"</span>
+        },
+        {
+            <span class="attr">"background"</span> : <span class="string">"#073642"</span>,
+            <span class="attr">"black"</span> : <span class="string">"#073642"</span>,
+            <span class="attr">"blue"</span> : <span class="string">"#268BD2"</span>,
+            <span class="attr">"brightBlack"</span> : <span class="string">"#002B36"</span>,
+            <span class="attr">"brightBlue"</span> : <span class="string">"#839496"</span>,
+            <span class="attr">"brightCyan"</span> : <span class="string">"#93A1A1"</span>,
+            <span class="attr">"brightGreen"</span> : <span class="string">"#586E75"</span>,
+            <span class="attr">"brightPurple"</span> : <span class="string">"#6C71C4"</span>,
+            <span class="attr">"brightRed"</span> : <span class="string">"#CB4B16"</span>,
+            <span class="attr">"brightWhite"</span> : <span class="string">"#FDF6E3"</span>,
+            <span class="attr">"brightYellow"</span> : <span class="string">"#657B83"</span>,
+            <span class="attr">"cyan"</span> : <span class="string">"#2AA198"</span>,
+            <span class="attr">"foreground"</span> : <span class="string">"#FDF6E3"</span>,
+            <span class="attr">"green"</span> : <span class="string">"#859900"</span>,
+            <span class="attr">"name"</span> : <span class="string">"Solarized Dark"</span>,
+            <span class="attr">"purple"</span> : <span class="string">"#D33682"</span>,
+            <span class="attr">"red"</span> : <span class="string">"#D30102"</span>,
+            <span class="attr">"white"</span> : <span class="string">"#EEE8D5"</span>,
+            <span class="attr">"yellow"</span> : <span class="string">"#B58900"</span>
+        },
+        {
+            <span class="attr">"background"</span> : <span class="string">"#FDF6E3"</span>,
+            <span class="attr">"black"</span> : <span class="string">"#073642"</span>,
+            <span class="attr">"blue"</span> : <span class="string">"#268BD2"</span>,
+            <span class="attr">"brightBlack"</span> : <span class="string">"#002B36"</span>,
+            <span class="attr">"brightBlue"</span> : <span class="string">"#839496"</span>,
+            <span class="attr">"brightCyan"</span> : <span class="string">"#93A1A1"</span>,
+            <span class="attr">"brightGreen"</span> : <span class="string">"#586E75"</span>,
+            <span class="attr">"brightPurple"</span> : <span class="string">"#6C71C4"</span>,
+            <span class="attr">"brightRed"</span> : <span class="string">"#CB4B16"</span>,
+            <span class="attr">"brightWhite"</span> : <span class="string">"#FDF6E3"</span>,
+            <span class="attr">"brightYellow"</span> : <span class="string">"#657B83"</span>,
+            <span class="attr">"cyan"</span> : <span class="string">"#2AA198"</span>,
+            <span class="attr">"foreground"</span> : <span class="string">"#073642"</span>,
+            <span class="attr">"green"</span> : <span class="string">"#859900"</span>,
+            <span class="attr">"name"</span> : <span class="string">"Solarized Light"</span>,
+            <span class="attr">"purple"</span> : <span class="string">"#D33682"</span>,
+            <span class="attr">"red"</span> : <span class="string">"#D30102"</span>,
+            <span class="attr">"white"</span> : <span class="string">"#EEE8D5"</span>,
+            <span class="attr">"yellow"</span> : <span class="string">"#B58900"</span>
+        },
+        {
+            <span class="attr">"background"</span> : <span class="string">"#2C001E"</span>,
+            <span class="attr">"black"</span> : <span class="string">"#EEEEEC"</span>,
+            <span class="attr">"blue"</span> : <span class="string">"#268BD2"</span>,
+            <span class="attr">"brightBlack"</span> : <span class="string">"#002B36"</span>,
+            <span class="attr">"brightBlue"</span> : <span class="string">"#839496"</span>,
+            <span class="attr">"brightCyan"</span> : <span class="string">"#93A1A1"</span>,
+            <span class="attr">"brightGreen"</span> : <span class="string">"#586E75"</span>,
+            <span class="attr">"brightPurple"</span> : <span class="string">"#6C71C4"</span>,
+            <span class="attr">"brightRed"</span> : <span class="string">"#CB4B16"</span>,
+            <span class="attr">"brightWhite"</span> : <span class="string">"#FDF6E3"</span>,
+            <span class="attr">"brightYellow"</span> : <span class="string">"#657B83"</span>,
+            <span class="attr">"cyan"</span> : <span class="string">"#2AA198"</span>,
+            <span class="attr">"foreground"</span> : <span class="string">"#EEEEEC"</span>,
+            <span class="attr">"green"</span> : <span class="string">"#729FCF"</span>,
+            <span class="attr">"name"</span> : <span class="string">"Ubuntu"</span>,
+            <span class="attr">"purple"</span> : <span class="string">"#D33682"</span>,
+            <span class="attr">"red"</span> : <span class="string">"#16C60C"</span>,
+            <span class="attr">"white"</span> : <span class="string">"#EEE8D5"</span>,
+            <span class="attr">"yellow"</span> : <span class="string">"#B58900"</span>
+        },
+        {
+            <span class="attr">"background"</span> : <span class="string">"#2C001E"</span>,
+            <span class="attr">"black"</span> : <span class="string">"#4E9A06"</span>,
+            <span class="attr">"blue"</span> : <span class="string">"#3465A4"</span>,
+            <span class="attr">"brightBlack"</span> : <span class="string">"#555753"</span>,
+            <span class="attr">"brightBlue"</span> : <span class="string">"#729FCF"</span>,
+            <span class="attr">"brightCyan"</span> : <span class="string">"#34E2E2"</span>,
+            <span class="attr">"brightGreen"</span> : <span class="string">"#8AE234"</span>,
+            <span class="attr">"brightPurple"</span> : <span class="string">"#AD7FA8"</span>,
+            <span class="attr">"brightRed"</span> : <span class="string">"#EF2929"</span>,
+            <span class="attr">"brightWhite"</span> : <span class="string">"#EEEEEE"</span>,
+            <span class="attr">"brightYellow"</span> : <span class="string">"#FCE94F"</span>,
+            <span class="attr">"cyan"</span> : <span class="string">"#06989A"</span>,
+            <span class="attr">"foreground"</span> : <span class="string">"#EEEEEE"</span>,
+            <span class="attr">"green"</span> : <span class="string">"#300A24"</span>,
+            <span class="attr">"name"</span> : <span class="string">"UbuntuLegit"</span>,
+            <span class="attr">"purple"</span> : <span class="string">"#75507B"</span>,
+            <span class="attr">"red"</span> : <span class="string">"#CC0000"</span>,
+            <span class="attr">"white"</span> : <span class="string">"#D3D7CF"</span>,
+            <span class="attr">"yellow"</span> : <span class="string">"#C4A000"</span>
+        },
+        {
+            <span class="attr">"background"</span> : <span class="string">"#F7F7F7"</span>,
+            <span class="attr">"black"</span> : <span class="string">"#090300"</span>,
+            <span class="attr">"blue"</span> : <span class="string">"#01A0E4"</span>,
+            <span class="attr">"brightBlack"</span> : <span class="string">"#5C5855"</span>,
+            <span class="attr">"brightBlue"</span> : <span class="string">"#807D7C"</span>,
+            <span class="attr">"brightCyan"</span> : <span class="string">"#CDAB53"</span>,
+            <span class="attr">"brightGreen"</span> : <span class="string">"#3A3432"</span>,
+            <span class="attr">"brightPurple"</span> : <span class="string">"#D6D5D4"</span>,
+            <span class="attr">"brightRed"</span> : <span class="string">"#E8BBD0"</span>,
+            <span class="attr">"brightWhite"</span> : <span class="string">"#F7F7F7"</span>,
+            <span class="attr">"brightYellow"</span> : <span class="string">"#4A4543"</span>,
+            <span class="attr">"cyan"</span> : <span class="string">"#B5E4F4"</span>,
+            <span class="attr">"foreground"</span> : <span class="string">"#4A4543"</span>,
+            <span class="attr">"green"</span> : <span class="string">"#01A252"</span>,
+            <span class="attr">"name"</span> : <span class="string">"3024 Day"</span>,
+            <span class="attr">"purple"</span> : <span class="string">"#A16A94"</span>,
+            <span class="attr">"red"</span> : <span class="string">"#DB2D20"</span>,
+            <span class="attr">"white"</span> : <span class="string">"#A5A2A2"</span>,
+            <span class="attr">"yellow"</span> : <span class="string">"#FDED02"</span>
+        },
+        {
+            <span class="attr">"background"</span> : <span class="string">"#FFFFFF"</span>,
+            <span class="attr">"black"</span> : <span class="string">"#011627"</span>,
+            <span class="attr">"blue"</span> : <span class="string">"#4876D6"</span>,
+            <span class="attr">"brightBlack"</span> : <span class="string">"#7A8181"</span>,
+            <span class="attr">"brightBlue"</span> : <span class="string">"#5CA7E4"</span>,
+            <span class="attr">"brightCyan"</span> : <span class="string">"#00C990"</span>,
+            <span class="attr">"brightGreen"</span> : <span class="string">"#49D0C5"</span>,
+            <span class="attr">"brightPurple"</span> : <span class="string">"#697098"</span>,
+            <span class="attr">"brightRed"</span> : <span class="string">"#F76E6E"</span>,
+            <span class="attr">"brightWhite"</span> : <span class="string">"#989FB1"</span>,
+            <span class="attr">"brightYellow"</span> : <span class="string">"#DAC26B"</span>,
+            <span class="attr">"cyan"</span> : <span class="string">"#08916A"</span>,
+            <span class="attr">"foreground"</span> : <span class="string">"#403F53"</span>,
+            <span class="attr">"green"</span> : <span class="string">"#2AA298"</span>,
+            <span class="attr">"name"</span> : <span class="string">"Night Owlish Light"</span>,
+            <span class="attr">"purple"</span> : <span class="string">"#403F53"</span>,
+            <span class="attr">"red"</span> : <span class="string">"#D3423E"</span>,
+            <span class="attr">"white"</span> : <span class="string">"#7A8181"</span>,
+            <span class="attr">"yellow"</span> : <span class="string">"#DAAA01"</span>
+        },
+        {
+            <span class="attr">"background"</span> : <span class="string">"#FFFFFF"</span>,
+            <span class="attr">"black"</span> : <span class="string">"#000000"</span>,
+            <span class="attr">"blue"</span> : <span class="string">"#4271AE"</span>,
+            <span class="attr">"brightBlack"</span> : <span class="string">"#000000"</span>,
+            <span class="attr">"brightBlue"</span> : <span class="string">"#4271AE"</span>,
+            <span class="attr">"brightCyan"</span> : <span class="string">"#3E999F"</span>,
+            <span class="attr">"brightGreen"</span> : <span class="string">"#718C00"</span>,
+            <span class="attr">"brightPurple"</span> : <span class="string">"#8959A8"</span>,
+            <span class="attr">"brightRed"</span> : <span class="string">"#C82829"</span>,
+            <span class="attr">"brightWhite"</span> : <span class="string">"#FFFFFF"</span>,
+            <span class="attr">"brightYellow"</span> : <span class="string">"#EAB700"</span>,
+            <span class="attr">"cyan"</span> : <span class="string">"#3E999F"</span>,
+            <span class="attr">"foreground"</span> : <span class="string">"#4D4D4C"</span>,
+            <span class="attr">"green"</span> : <span class="string">"#718C00"</span>,
+            <span class="attr">"name"</span> : <span class="string">"Tomorrow"</span>,
+            <span class="attr">"purple"</span> : <span class="string">"#8959A8"</span>,
+            <span class="attr">"red"</span> : <span class="string">"#C82829"</span>,
+            <span class="attr">"white"</span> : <span class="string">"#FFFFFF"</span>,
+            <span class="attr">"yellow"</span> : <span class="string">"#EAB700"</span>
+        },      
+        {
+            <span class="attr">"name"</span>: <span class="string">"3024 Day"</span>,
+            <span class="attr">"black"</span>: <span class="string">"#090300"</span>,
+            <span class="attr">"red"</span>: <span class="string">"#db2d20"</span>,
+            <span class="attr">"green"</span>: <span class="string">"#01a0e4"</span>,
+            <span class="attr">"yellow"</span>: <span class="string">"#fded02"</span>,
+            <span class="attr">"blue"</span>: <span class="string">"#fded02"</span>,
+            <span class="attr">"purple"</span>: <span class="string">"#a16a94"</span>,
+            <span class="attr">"cyan"</span>: <span class="string">"#b5e4f4"</span>,
+            <span class="attr">"white"</span>: <span class="string">"#a5a2a2"</span>,
+            <span class="attr">"brightBlack"</span>: <span class="string">"#5c5855"</span>,
+            <span class="attr">"brightRed"</span>: <span class="string">"#e8bbd0"</span>,
+            <span class="attr">"brightGreen"</span>: <span class="string">"#3a3432"</span>,
+            <span class="attr">"brightYellow"</span>: <span class="string">"#4a4543"</span>,
+            <span class="attr">"brightBlue"</span>: <span class="string">"#807d7c"</span>,
+            <span class="attr">"brightPurple"</span>: <span class="string">"#d6d5d4"</span>,
+            <span class="attr">"brightCyan"</span>: <span class="string">"#cdab53"</span>,
+            <span class="attr">"brightWhite"</span>: <span class="string">"#f7f7f7"</span>,
+            <span class="attr">"background"</span>: <span class="string">"#f7f7f7"</span>,
+            <span class="attr">"foreground"</span>: <span class="string">"#4a4543"</span>
+        }
+    ]
+}  </code></pre>
+<p>好了，terminal部分我们到此为止。  </p>
+<h1 id="WSL2"><a href="#WSL2" class="headerlink" title="WSL2"></a>WSL2</h1><p>跟terminal一样，我们也是先输入两条命令来开启Windows10下的Linux子系统工能。其实wsl本来也就是Windows Linux子系统的缩写嘛，哈哈。  </p>
+<blockquote>
+<p>Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform<br>Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux  </p>
+</blockquote>
+<p>同意命令相关的请求，并且重启之后，我们来设置安装Linux时默认启用wsl2<br>使用命令:  </p>
+<blockquote>
+<p>wsl –set-default-version 2  </p>
+</blockquote>
+<p>我们就可以进入Windows应用商店来下载Linux系统了。这里我选择的是Ubuntu 18.04.<br>这样以后来进行对支持图形应用的简单配置。将我如下的配置文件复制之后，替换~/.bashrc文件。  </p>
+<pre><code class="bash"><span class="comment"># ~/.bashrc: executed by bash(1) for non-login shells.</span>
+<span class="comment"># see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)</span>
+<span class="comment"># for examples</span>
+
+<span class="comment"># If not running interactively, don't do anything</span>
+<span class="keyword">case</span> $- <span class="keyword">in</span>
+    *i*) ;;
+      *) <span class="built_in">return</span>;;
+<span class="keyword">esac</span>
+
+<span class="comment"># don't put duplicate lines or lines starting with space in the history.</span>
+<span class="comment"># See bash(1) for more options</span>
+HISTCONTROL=ignoreboth
+
+<span class="comment"># append to the history file, don't overwrite it</span>
+<span class="built_in">shopt</span> -s histappend
+
+<span class="comment"># for setting history length see HISTSIZE and HISTFILESIZE in bash(1)</span>
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+<span class="comment"># check the window size after each command and, if necessary,</span>
+<span class="comment"># update the values of LINES and COLUMNS.</span>
+<span class="built_in">shopt</span> -s checkwinsize
+
+<span class="comment"># If set, the pattern "**" used in a pathname expansion context will</span>
+<span class="comment"># match all files and zero or more directories and subdirectories.</span>
+<span class="comment">#shopt -s globstar</span>
+
+<span class="comment"># make less more friendly for non-text input files, see lesspipe(1)</span>
+[ -x /usr/bin/lesspipe ] &amp;&amp; <span class="built_in">eval</span> <span class="string">"<span class="variable">$(SHELL=/bin/sh lesspipe)</span>"</span>
+
+<span class="comment"># set variable identifying the chroot you work in (used in the prompt below)</span>
+<span class="keyword">if</span> [ -z <span class="string">"<span class="variable">${debian_chroot:-}</span>"</span> ] &amp;&amp; [ -r /etc/debian_chroot ]; <span class="keyword">then</span>
+    debian_chroot=$(cat /etc/debian_chroot)
+<span class="keyword">fi</span>
+
+<span class="comment"># set a fancy prompt (non-color, unless we know we "want" color)</span>
+<span class="keyword">case</span> <span class="string">"<span class="variable">$TERM</span>"</span> <span class="keyword">in</span>
+    xterm-color|*-256color) color_prompt=yes;;
+<span class="keyword">esac</span>
+
+<span class="comment"># uncomment for a colored prompt, if the terminal has the capability; turned</span>
+<span class="comment"># off by default to not distract the user: the focus in a terminal window</span>
+<span class="comment"># should be on the output of commands, not on the prompt</span>
+<span class="comment">#force_color_prompt=yes</span>
+
+<span class="keyword">if</span> [ -n <span class="string">"<span class="variable">$force_color_prompt</span>"</span> ]; <span class="keyword">then</span>
+    <span class="keyword">if</span> [ -x /usr/bin/tput ] &amp;&amp; tput setaf 1 &gt;&amp;/dev/null; <span class="keyword">then</span>
+    <span class="comment"># We have color support; assume it's compliant with Ecma-48</span>
+    <span class="comment"># (ISO/IEC-6429). (Lack of such support is extremely rare, and such</span>
+    <span class="comment"># a case would tend to support setf rather than setaf.)</span>
+    color_prompt=yes
+    <span class="keyword">else</span>
+    color_prompt=
+    <span class="keyword">fi</span>
+<span class="keyword">fi</span>
+
+<span class="keyword">if</span> [ <span class="string">"<span class="variable">$color_prompt</span>"</span> = yes ]; <span class="keyword">then</span>
+    PS1=<span class="string">'${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '</span>
+<span class="keyword">else</span>
+    PS1=<span class="string">'${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '</span>
+<span class="keyword">fi</span>
+<span class="built_in">unset</span> color_prompt force_color_prompt
+
+<span class="comment"># If this is an xterm set the title to user@host:dir</span>
+<span class="keyword">case</span> <span class="string">"<span class="variable">$TERM</span>"</span> <span class="keyword">in</span>
+xterm*|rxvt*)
+    PS1=<span class="string">"\[\e]0;<span class="variable">${debian_chroot:+($debian_chroot)}</span>\u@\h: \w\a\]<span class="variable">$PS1</span>"</span>
+    ;;
+*)
+    ;;
+<span class="keyword">esac</span>
+
+<span class="comment"># enable color support of ls and also add handy aliases</span>
+<span class="keyword">if</span> [ -x /usr/bin/dircolors ]; <span class="keyword">then</span>
+    <span class="built_in">test</span> -r ~/.dircolors &amp;&amp; <span class="built_in">eval</span> <span class="string">"<span class="variable">$(dircolors -b ~/.dircolors)</span>"</span> || <span class="built_in">eval</span> <span class="string">"<span class="variable">$(dircolors -b)</span>"</span>
+    <span class="built_in">alias</span> ls=<span class="string">'ls --color=auto'</span>
+    <span class="comment">#alias dir='dir --color=auto'</span>
+    <span class="comment">#alias vdir='vdir --color=auto'</span>
+
+    <span class="built_in">alias</span> grep=<span class="string">'grep --color=auto'</span>
+    <span class="built_in">alias</span> fgrep=<span class="string">'fgrep --color=auto'</span>
+    <span class="built_in">alias</span> egrep=<span class="string">'egrep --color=auto'</span>
+<span class="keyword">fi</span>
+
+<span class="comment"># colored GCC warnings and errors</span>
+<span class="comment">#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'</span>
+
+<span class="comment"># some more ls aliases</span>
+<span class="built_in">alias</span> ll=<span class="string">'ls -alF'</span>
+<span class="built_in">alias</span> la=<span class="string">'ls -A'</span>
+<span class="built_in">alias</span> l=<span class="string">'ls -CF'</span>
+
+<span class="comment"># Add an "alert" alias for long running commands.  Use like so:</span>
+<span class="comment">#   sleep 10; alert</span>
+<span class="built_in">alias</span> alert=<span class="string">'notify-send --urgency=low -i "$([ $? = 0 ] &amp;&amp; echo terminal || echo error)" "$(history|tail -n1|sed -e '</span>\<span class="string">''</span>s/^\s*[0-9]\+\s*//;s/[;&amp;|]\s*alert$//<span class="string">'\'</span><span class="string">')"'</span>
+
+<span class="comment"># Alias definitions.</span>
+<span class="comment"># You may want to put all your additions into a separate file like</span>
+<span class="comment"># ~/.bash_aliases, instead of adding them here directly.</span>
+<span class="comment"># See /usr/share/doc/bash-doc/examples in the bash-doc package.</span>
+
+<span class="keyword">if</span> [ -f ~/.bash_aliases ]; <span class="keyword">then</span>
+    . ~/.bash_aliases
+<span class="keyword">fi</span>
+
+<span class="comment"># enable programmable completion features (you don't need to enable</span>
+<span class="comment"># this, if it's already enabled in /etc/bash.bashrc and /etc/profile</span>
+<span class="comment"># sources /etc/bash.bashrc).</span>
+<span class="keyword">if</span> ! <span class="built_in">shopt</span> -oq posix; <span class="keyword">then</span>
+  <span class="keyword">if</span> [ -f /usr/share/bash-completion/bash_completion ]; <span class="keyword">then</span>
+    . /usr/share/bash-completion/bash_completion
+  <span class="keyword">elif</span> [ -f /etc/bash_completion ]; <span class="keyword">then</span>
+    . /etc/bash_completion
+  <span class="keyword">fi</span>
+<span class="keyword">fi</span>
+<span class="built_in">export</span> DISPLAY=`cat /etc/resolv.conf | grep nameserver | awk <span class="string">'{print $2}'</span>`:0
+<span class="built_in">export</span> LIBGL_ALWAYS_INDIRECT=1</code></pre>
+<p>之后我们安装VcXsrv，这玩意百度一下就能找到，安装好之后，我们打开XLaunch，选择multiple Windows，然后一路确定，注意在extra settings步骤是，四个选项我们要全打上勾。这样一来我们就大功告成了！赶紧看看效果<br><img src="/2020/01/06/wsl2-WindowsTerminal并开启图形应用/2.jpg" alt></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/实用工具/" rel="tag"># 实用工具</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/25/基于mapreduce的k-means算法/" rel="next" title="基于mapreduce的k-means算法">
+                <i class="fa fa-chevron-left"></i> 基于mapreduce的k-means算法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Mortal</p>
+              <p class="site-description motion-element" itemprop="description">终日钦钦，常在战场</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Terminal"><span class="nav-number">1.</span> <span class="nav-text">Terminal</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介以及安装注意事项"><span class="nav-number">1.1.</span> <span class="nav-text">简介以及安装注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#美化"><span class="nav-number">1.2.</span> <span class="nav-text">美化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WSL2"><span class="nav-number">2.</span> <span class="nav-text">WSL2</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mortal</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

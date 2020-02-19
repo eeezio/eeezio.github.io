@@ -88,7 +88,7 @@
 <meta property="og:description" content="算法分析的几种不同渐进符号，递推公式的算法分析，面向数据规模的算法分析，面向操作规模的算法分析方法">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/2019/12/24/算法分析/1.jpg">
-<meta property="og:updated_time" content="2020-02-18T11:30:01.871Z">
+<meta property="og:updated_time" content="2020-02-19T12:35:10.578Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法分析">
 <meta name="twitter:description" content="算法分析的几种不同渐进符号，递推公式的算法分析，面向数据规模的算法分析，面向操作规模的算法分析方法">
@@ -319,7 +319,7 @@
 <blockquote>
 <p>对于非负递归函数$T(n)=aT(n/b)+f(n)$，其中$a&gt;=1$，$b&gt;1$且为常数，$f(n)$为渐进函数，则$T(n)$有如下三种渐进界限：<br>$if\ \ \ \ f(n)=O(n^{log_ba-\varepsilon})$,常数$\varepsilon&gt;0,then\ \ \ \ T(n)=\Theta(n^{log_ba})$<br>$if\ \ \ \ f(n)=\Theta(n^{log_ba}),then\ \ \ \ T(n)=\Theta(n^{log_ba}*logn)$<br>$if\ \ \ \ f(n)=\Omega(n^{log_ba+\varepsilon})$,常数$\varepsilon&gt;0$且$\exists$常数$c&lt;1$,$n$足够大时有$af(n/b)&lt;=cf(n),then\ \ \ \ T(n)=\Theta(f(n))$  </p>
 </blockquote>
-<p>主定理的使用也是有着注意事项的，那就是不能落入主定里的”间隙”。请看下题。<br>$T(n)=2T(n/2)+nlogn$<br>你可能认为会选择主定理的第三种情况来进行求解，但实则不然。因为$nlogn$并不多项式大于$n$.这一点我们可以通过微积分的极限理论来求得。有$\lim_{n \rightarrow \infty}{\frac{n^{1+\varepsilon}}{nlogn}}=0$。这就是所谓的主定理的”间隙”.  </p>
+<p>主定理的使用也是有着注意事项的，那就是不能落入主定里的”间隙”。请看下题。<br>$T(n)=2T(n/2)+nlogn$<br>你可能认为会选择主定理的第三种情况来进行求解，但实则不然。因为$nlogn$并不多项式大于$n$.这一点我们可以通过微积分的极限理论来求得。有$\lim_{n \rightarrow \infty}{\frac{n^{1+\varepsilon}}{nlogn}}=\infty$。这就是所谓的主定理的”间隙”.  </p>
 <h1 id="递推公式的算法分析"><a href="#递推公式的算法分析" class="headerlink" title="递推公式的算法分析"></a>递推公式的算法分析</h1><p>有的时候我们经常碰到形如$T(n)=T(n-1)+f(n)$的递推方程，比如说斐波那契额数列，那么这种递推式如何进行算法分析呢？其实本质上，这种方程就是我们高等数学中所讲的差分方程，离散数学中所讲的递推关系。<br>求解常系数线性齐次递推关系的基本方法是寻找形如$a_n=r^n$的解。其中$r$是常数。注意$a_n=r^n$是递推关系$a_n=c_1a_{n-1}+c_2a_{n-2}+…+c_ka_{n-k}$的解，当且仅当<br>$r^n=c_1r^{n-1}+c_2r^{n-2}+…+c_kr^{n-k}$<br>当等式两边同时除以$r^{n-k}$,我们得到等价的方程<br>$r^k-c_1r^{k-1}-…-c_k=0$<br>一般来说，我们很容易求解出这种形式的递推关系$af(n)=bf(n-1)+cf(n-2)$。我们将$ar^2-br-c=0$称作是<strong>特征方程</strong>，一般来说，这种通项都给出了$a_1,a_2$的初始值。我们来看下面一道例题，总结一下我们学过的知识。  </p>
 <p>求解$a_n=a_{n-1}+2a_{n-2}$<br>首先，我们可以求得特征方程$r^2-r-2=0$的解为$r_1=2,r_2=-1$，所以递推式的解形如$a_n=\alpha_12^n+\alpha_2(-1)^n$,之后我们可以将$a_1,a_2$代入即可求出最终结果。<br>当然，可能存在出现重根的情况。假设有$t$个不相等的根$r_1,r_2…r_t$,重数分别为$m_1,m_2…m_t$,满足$m_i&gt;=1,i=1,2…,t$,且$m_1+m_2+…+m_t=k$,那么递推关系的解为<br>$a_n=(\alpha_{1,0}+\alpha_{1,1}n+…+\alpha_{1,m_i-1}n^{m_{1,i-1}})r_1^n+(\alpha_{2,0}+\alpha_{2,1}n+…+\alpha_{2,m_i-1}n^{m_{2,i-1}})r_2^n+…+(\alpha_{t,0}+\alpha_{t,1}n+…+\alpha_{t,m_i-1}n^{m_{t,i-1}})r_t^n$  </p>
 <p>当然，面对非齐次的递推关系，道理和我们解线性非齐次方程式一样的。我们只要求出一个特解，然后与其对应其次关系的通解相加即可<br>对于非齐次递推方程的不同$f(n)$，我们很难找到一种通用的方法来寻求特解。这里介绍一种常见的即$f(n)=kn$的情形，我们将特解设为$p_n=cn+d$是很合理的  </p>
@@ -370,6 +370,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/25/基于mapreduce的k-means算法/" rel="prev" title="基于mapreduce的k-means算法">
+                基于mapreduce的k-means算法 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -446,7 +450,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -459,7 +463,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
